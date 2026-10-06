@@ -333,7 +333,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       <li><b>과목 카드 추가</b>를 누르고 학년 동그라미에서 학년을, 과목 칸에 과목명을 적어요. 창체는 위의 <b>창체</b> 탭에서 영역을 골라요.</li>
       <li><b>세특 내용</b> 칸에 생기부 원문을 붙여 넣어요. 오른쪽 위에 글자 수가 나와요.</li>
       <li>중요한 부분을 <b>드래그</b>하면 도구 막대가 떠요. 글자색, <mark>형광펜</mark>, 굵게, 밑줄을 바꿀 수 있고 <b>지우개</b>로 되돌려요.</li>
-      <li>원문 아래에 원문 아래 <b>+ 추가</b>를 누르고 <b>꼬리 질문</b>(질문·답변), <b>개념 뜻</b>(개념·뜻), <b>기타</b>(종류를 직접 정해서) 중 필요한 표를 골라요. 표 아래 버튼으로 줄을 늘리고 <b>×</b>로 지워요. 줄을 다 지우면 표도 사라져요.</li>
+      <li>원문 아래에 원문 아래 <b>+ 추가</b>를 누르고 <b>꼬리 질문</b>(질문·답변), <b>개념 뜻</b>(개념·뜻), <b>기타</b>(종류를 직접 정해서) 중 필요한 표를 골라요. 같은 표에 줄을 더 넣으려면 <b>+ 추가</b>에서 그 표를 한 번 더 고르고, <b>×</b>로 지워요. 줄을 다 지우면 표도 사라져요.</li>
       <li><b>생기부 질문</b> 탭에는 생기부 내용으로 나올 만한 질문을 적고, <b>과목</b>과 <b>생기부 쪽수</b>를 함께 적어 답변을 준비해요.</li>
       <li><b>공통 질문</b> 탭에는 지원동기 같은 기본 질문이 들어 있어요. 답변을 쓰면 말하는 시간이 자동으로 계산돼요(1분에 약 300자 기준).</li>
       <li>오른쪽 위 <b>면접 일정</b>을 누르면 대학별로 이름과 날짜를 여러 개 넣을 수 있고, 가까운 순서대로 D-day가 떠요.</li>
@@ -874,7 +874,7 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
     </article>`;
   }
 
-  const apanel = (c, l, title, heads, list, row, addLabel) => !list.length ? '' : `<section class="ap ap-${l}"><div class="aph">${title}<span class="apn">${list.length}</span></div><div class="apc"><div class="apr head"><span></span><span>${heads[0]}</span><span>${heads[1]}</span><span></span></div>${list.map((x, i) => `<div class="apr">${row(x, i)}<button class="rdel" type="button" data-l="${l}" data-r="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></div>`).join('')}<button class="addsec" type="button" data-l="${l}">${addLabel}</button></div></section>`;
+  const apanel = (c, l, title, heads, list, row, addLabel) => !list.length ? '' : `<section class="ap ap-${l}"><div class="aph">${title}<span class="apn">${list.length}</span></div><div class="apc"><div class="apr head"><span></span><span>${heads[0]}</span><span>${heads[1]}</span><span></span></div>${list.map((x, i) => `<div class="apr">${row(x, i)}<button class="rdel" type="button" data-l="${l}" data-r="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></div>`).join('')}</div></section>`;
   const rtc = (c, f, v, ph, label, cls = '') => `<div class="rt ${cls}" id="${f.replace(/:/g, '-')}-${c.id}" data-f="${f}" contenteditable="true" data-ph="${ph}" aria-label="${label}" role="textbox" aria-multiline="true">${clean(v)}</div>`;
   function cardHTML(c) {
     if (isQA(c.kind)) return qaHTML(c);
