@@ -198,6 +198,26 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
 .panel .n{color:var(--faint);font-size:12px;font-variant-numeric:tabular-nums}
 .panel .acts{display:flex;justify-content:flex-end;gap:8px}
 .panel .note{font-size:13px;color:var(--soft);margin:0;min-height:1.2em}
+body.wide .wrap{max-width:1480px}
+.tblwrap{overflow-x:auto;background:var(--paper);border:1.5px solid var(--rule-strong);border-radius:4px;box-shadow:var(--shadow);-webkit-overflow-scrolling:touch}
+table.grid{border-collapse:collapse;width:100%;min-width:1100px;table-layout:fixed}
+table.grid th{position:sticky;top:0;background:var(--sum);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--soft);text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule-strong);border-left:1px solid var(--rule);white-space:nowrap}
+table.grid th.c-tail{color:var(--warn)} table.grid th.c-concept{color:var(--g2i)} table.grid th.c-ex{color:var(--g3i)}
+table.grid td{vertical-align:top;border-top:1px solid var(--rule);border-left:1px solid var(--rule);padding:0}
+table.grid th:first-child,table.grid td:first-child{border-left:0}
+table.grid tr.card{display:table-row;background:none;border:0;box-shadow:none;border-radius:0;animation:none}
+table.grid .rt{padding:8px 10px;font-size:14px;line-height:1.65;min-height:72px}
+table.grid input,table.grid select{width:100%;font:inherit;font-size:14px;border:0;background:transparent;color:var(--ink);padding:8px 10px}
+table.grid input::placeholder{color:var(--faint)}
+table.grid td.gcell{text-align:center}
+table.grid td.gcell select{font-weight:600;text-align:center;padding:8px 2px}
+table.grid td.sub input,table.grid td.sub select{font-weight:600}
+table.grid .exitem+.exitem{border-top:1px dashed var(--rule)}
+table.grid .exitem .extitle{font-size:12px;font-weight:600;color:var(--g3i);padding:6px 10px 0}
+table.grid .exitem .rt{min-height:48px;padding-top:2px}
+table.grid td.act{text-align:center;padding:6px 4px}
+table.grid .addsec{font-size:12px;padding:6px 10px;background:none;border-top:1px dashed var(--rule)}
+table.grid tr.card:hover td{background:color-mix(in srgb,var(--accent-tint) 35%,transparent)}
 @media print{
   .bar,.help,.add,.del,.drag,.fb,.tb,.toast,.tools,.ddpanel,.dday .ed{display:none!important}
   body{background:#fff}
@@ -260,6 +280,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
     <div class="tools">
       <button class="tool" id="undo" type="button" disabled title="되돌리기 (Ctrl+Z)"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 3.5 2.5 6.5l3 3"/><path d="M2.5 6.5h7a4 4 0 0 1 0 8H7"/></svg>되돌리기</button>
       <button class="tool" id="trashBtn" type="button" aria-pressed="false"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg>휴지통 <span class="n" id="nT">0</span></button>
+      <button class="tool" id="layoutBtn" type="button" aria-pressed="false" title="표로 보기"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2.5" width="12" height="11" rx="1.5"/><path d="M2 6.5h12M2 10h12M6.5 2.5v11"/></svg><span id="layoutLbl">표로 보기</span></button>
       <button class="tool" id="printBtn" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 6V2.5h7V6M4.5 11.5h-2v-5h11v5h-2"/><path d="M4.5 9.5h7v4h-7z"/></svg>인쇄</button>
     </div>
     <span class="save" id="save">불러오는 중…</span>
@@ -272,6 +293,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       <li><b>세특 내용</b> 칸에 생기부 원문을 붙여 넣어요. 오른쪽 위에 글자 수가 나와요.</li>
       <li>중요한 부분을 <b>드래그</b>하면 도구 막대가 떠요. 글자색, <mark>형광펜</mark>, 굵게, 밑줄을 바꿀 수 있고 <b>지우개</b>로 되돌려요.</li>
       <li>원문 아래에 <b>꼬리 질문</b>(면접관이 이어서 물어볼 질문)과 <b>개념·의미</b>(활동에 나온 개념 정리)를 적어요. <b>기타</b> 칸은 제목을 직접 정해서 쓰고, <b>+ 칸 추가</b>로 원하는 만큼 늘릴 수 있어요. <b>키워드</b>는 쉼표로 적으면 검색창에서 찾을 수 있어요.</li>
+      <li>위쪽 <b>표로 보기</b>를 누르면 카드가 엑셀처럼 한 표로 바뀌어요. 표 안에서 바로 적고 고칠 수 있고, <b>카드로 보기</b>로 돌아갈 수 있어요. 휴대폰에서는 표를 옆으로 밀어서 봐요.</li>
       <li><b>약점 질문</b> 탭에는 면접관이 물어볼 만한 약한 부분(낮은 등급, 적은 활동)을 질문으로 적고 답변을 준비해요.</li>
       <li><b>공통 질문</b> 탭에는 지원동기 같은 기본 질문이 들어 있어요. 답변을 쓰면 말하는 시간이 자동으로 계산돼요(1분에 약 300자 기준).</li>
       <li>오른쪽 위 <b>면접 일정</b>을 누르면 대학별로 이름과 날짜를 여러 개 넣을 수 있고, 가까운 순서대로 D-day가 떠요.</li>
@@ -827,14 +849,51 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
     </article>`;
   }
 
+  let layout = 'cards';
+  try { layout = localStorage.getItem('saenggibu-layout') === 'table' ? 'table' : 'cards'; } catch {}
+  $('#layoutBtn').addEventListener('click', () => {
+    layout = layout === 'table' ? 'cards' : 'table';
+    try { localStorage.setItem('saenggibu-layout', layout); } catch {}
+    state.view = 'cards'; render();
+  });
+  const rtCell = (c, f, v, ph, label) => `<div class="rt" id="${f.replace(/:/g, '-')}-${c.id}" data-f="${f}" contenteditable="true" data-ph="${ph}" aria-label="${label}" role="textbox" aria-multiline="true">${clean(v)}</div>`;
+  function tableHTML(v) {
+    const k = state.kind, s = k === 's';
+    if (isQA(k)) {
+      const w = k === 'w';
+      return `<div class="tblwrap"><table class="grid"><colgroup><col style="width:260px">${w ? '<col style="width:180px">' : ''}<col><col style="width:130px"><col style="width:56px"></colgroup>
+        <thead><tr><th>질문</th>${w ? '<th>관련</th>' : ''}<th>답변</th><th>말하는 시간</th><th></th></tr></thead><tbody>`
+        + v.map(c => { const sp = speak(c); return `<tr class="card" data-id="${c.id}">
+          <td><input id="subj-${c.id}" data-f="question" value="${esc(c.question)}" placeholder="질문" aria-label="질문"></td>
+          ${w ? `<td><input data-f="related" value="${esc(c.related)}" placeholder="관련 과목·활동" aria-label="관련"></td>` : ''}
+          <td>${rtCell(c, 'content', c.content, '답변을 적어요', '답변')}</td>
+          <td class="ansfoot" style="padding:8px 10px;font-size:12px;color:var(--soft)">${sp.n ? `약 ${sp.t}<br>${sp.n}자` : '–'}</td>
+          <td class="act"><button class="del" type="button">삭제</button></td></tr>`; }).join('')
+        + '</tbody></table></div>';
+    }
+    return `<div class="tblwrap"><table class="grid"><colgroup><col style="width:64px"><col style="width:120px"><col style="width:360px"><col style="width:240px"><col style="width:240px"><col style="width:240px"><col style="width:150px"><col style="width:56px"></colgroup>
+      <thead><tr><th>학년</th><th>${s ? '과목' : '영역'}</th><th>${s ? '세특 내용' : '활동 내용'}</th><th class="c-tail">꼬리 질문</th><th class="c-concept">개념·의미</th><th class="c-ex">기타</th><th>키워드</th><th></th></tr></thead><tbody>`
+      + v.map(c => `<tr class="card" data-id="${c.id}">
+        <td class="gcell"><select class="grade" id="grade-${c.id}" data-f="grade" data-g="${esc(c.grade)}" aria-label="학년" style="width:44px;height:44px;margin:8px auto;display:block"><option value="">–</option>${[1, 2, 3].map(g => `<option value="${g}"${String(c.grade) === String(g) ? ' selected' : ''}>${g}</option>`).join('')}</select></td>
+        <td class="sub">${s ? `<input id="subj-${c.id}" data-f="subject" value="${esc(c.subject)}" placeholder="과목명" aria-label="과목">`
+          : `<select id="subj-${c.id}" data-f="subject" aria-label="영역"><option value="">영역</option>${['자율', '동아리', '진로', '봉사'].map(o => `<option${o === c.subject ? ' selected' : ''}>${o}</option>`).join('')}</select>`}</td>
+        <td>${rtCell(c, 'content', c.content, '생기부 원문', '원문')}</td>
+        <td>${rtCell(c, 'tail', c.tail, '이어서 물어볼 질문', '꼬리 질문')}</td>
+        <td>${rtCell(c, 'concept', c.concept, '개념, 용어 뜻', '개념과 의미')}</td>
+        <td>${extrasOf(c).map(x => `<div class="exitem"><div style="display:flex;align-items:center"><input class="extitle" id="xt-${c.id}-${esc(x.id)}" data-f="x:${esc(x.id)}:title" value="${esc(x.title)}" placeholder="기타 (제목)" aria-label="칸 제목"><button class="xdel" type="button" data-x="${esc(x.id)}" aria-label="이 칸 지우기" style="border:0;background:none;color:var(--faint);cursor:pointer;font-size:15px;padding:0 8px">×</button></div>${rtCell(c, `x:${x.id}:body`, x.body, '자유롭게', x.title || '기타')}</div>`).join('')}<button class="addsec" type="button">+ 칸 추가</button></td>
+        <td><input class="kw" data-f="keywords" value="${esc(c.keywords)}" placeholder="쉼표로 구분" aria-label="키워드"></td>
+        <td class="act"><button class="del" type="button">삭제</button></td></tr>`).join('')
+      + '</tbody></table></div>';
+  }
   function render() {
+    $('#layoutBtn').setAttribute('aria-pressed', layout === 'table'); document.body.classList.toggle('wide', layout === 'table' && state.view !== 'trash'); $('#layoutLbl').textContent = layout === 'table' ? '카드로 보기' : '표로 보기';
     $('#trashBtn').setAttribute('aria-pressed', state.view === 'trash');
     document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', state.view !== 'trash' && x.dataset.kind === state.kind));
     if (state.view === 'trash') { renderTrash(); counts(); renderDday(); return; }
     const v = visible();
     const addLabel = { s: '+ 과목 카드 추가', c: '+ 활동 카드 추가', w: '+ 약점 질문 추가', q: '+ 질문 추가' }[state.kind];
     $('#chips').hidden = isQA(state.kind);
-    listEl.innerHTML = (v.length ? v.map(cardHTML).join('') : `<p class="empty">${state.q ? '검색 결과가 없어요.' : '아직 카드가 없어요.'}</p>`)
+    listEl.innerHTML = (v.length ? (layout === 'table' ? tableHTML(v) : v.map(cardHTML).join('')) : `<p class="empty">${state.q ? '검색 결과가 없어요.' : '아직 카드가 없어요.'}</p>`)
       + `<button class="add" type="button" id="add">${addLabel}</button>`;
     counts(); renderDday();
   }
@@ -917,10 +976,10 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
     if (el.classList.contains('rt')) { if (!el.textContent.trim() && !el.querySelector('br + br')) el.innerHTML = ''; setF(c, f, el.innerHTML); }
     else setF(c, f, el.value);
     if (f === 'grade') el.dataset.g = el.value;
-    if (isQA(c.kind) && f === 'content') cardEl.querySelector('.ansfoot').innerHTML = speak(c).html;
+    if (isQA(c.kind) && f === 'content') { const af = cardEl.querySelector('.ansfoot'); if (af) { const sp = speak(c); af.innerHTML = layout === 'table' ? (sp.n ? `약 ${sp.t}<br>${sp.n}자` : '–') : sp.html; } }
     else if (f === 'content' || f === 'subject') {
       const k = countText(c), cnt = cardEl.querySelector('.count');
-      cnt.textContent = k.t; cnt.classList.toggle('over', k.over);
+      if (cnt) cnt.textContent = k.t; cnt && cnt.classList.toggle('over', k.over);
     }
     queueSave(c);
     counts();
