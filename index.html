@@ -102,6 +102,20 @@ h1{font-family:var(--serif);font-size:30px;margin:0;letter-spacing:-.01em;text-w
 .sumhead .extitle::placeholder{color:var(--faint);font-weight:500}
 .sumhead .xdel{font:inherit;font-size:15px;line-height:1;border:0;background:none;color:var(--faint);cursor:pointer;padding:0 4px;border-radius:4px}
 .sumhead .xdel:hover{color:var(--warn)}
+.anwrap{background:var(--sum);padding:6px 16px 10px}
+.antbl{width:100%;border-collapse:collapse;table-layout:fixed;background:var(--paper);border:1px solid var(--rule);border-radius:6px}
+.antbl th{font-size:12px;font-weight:600;color:var(--soft);text-align:left;padding:6px 10px;border-bottom:1px solid var(--rule);background:var(--sum)}
+.antbl td{vertical-align:top;border-top:1px solid var(--rule);padding:0}
+.antbl td+td,.antbl th+th{border-left:1px solid var(--rule)}
+.antbl .rt{padding:7px 10px;min-height:38px;font-size:14px;line-height:1.65}
+.antbl .kind{display:inline-block;margin:7px 8px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.kind.tail{background:color-mix(in srgb,var(--warn) 14%,transparent);color:var(--warn)}
+.kind.concept{background:var(--g2);color:var(--g2i)}
+input.kind.ex{width:calc(100% - 16px);background:var(--g3);color:var(--g3i);border:0;font:inherit;font-size:12px;font-weight:600}
+input.kind.ex::placeholder{color:var(--g3i);opacity:.7}
+.antbl .xdel{display:block;margin:6px auto;font:inherit;font-size:15px;line-height:1;border:0;background:none;color:var(--faint);cursor:pointer;padding:2px 6px;border-radius:4px}
+.antbl .xdel:hover{color:var(--warn)}
+.anwrap .addsec{background:none;border:0;padding:8px 2px 0;width:auto}
 .addsec{display:block;width:100%;text-align:left;font:inherit;font-size:12px;font-weight:600;color:var(--accent);background:var(--sum);border:0;border-top:1px dashed var(--rule);padding:8px 16px;cursor:pointer}
 .addsec:hover{background:var(--accent-tint)}
 .kwrow{display:flex;align-items:center;gap:8px;padding:0 16px 12px;background:var(--sum)}
@@ -271,7 +285,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       <li><b>과목 카드 추가</b>를 누르고 학년 동그라미에서 학년을, 과목 칸에 과목명을 적어요. 창체는 위의 <b>창체</b> 탭에서 영역을 골라요.</li>
       <li><b>세특 내용</b> 칸에 생기부 원문을 붙여 넣어요. 오른쪽 위에 글자 수가 나와요.</li>
       <li>중요한 부분을 <b>드래그</b>하면 도구 막대가 떠요. 글자색, <mark>형광펜</mark>, 굵게, 밑줄을 바꿀 수 있고 <b>지우개</b>로 되돌려요.</li>
-      <li>원문 아래에 <b>꼬리 질문</b>(면접관이 이어서 물어볼 질문)과 <b>개념·의미</b>(활동에 나온 개념 정리)를 적어요. <b>기타</b> 칸은 제목을 직접 정해서 쓰고, <b>+ 칸 추가</b>로 원하는 만큼 늘릴 수 있어요. <b>키워드</b>는 쉼표로 적으면 검색창에서 찾을 수 있어요.</li>
+      <li>원문 아래에 <b>분석</b> 표에 <b>꼬리 질문</b>(면접관이 이어서 물어볼 질문)과 <b>개념 뜻</b>을 적어요. <b>기타</b> 줄은 종류 이름을 직접 정해서 쓰고, <b>+ 기타 줄 추가</b>로 원하는 만큼 늘릴 수 있어요. <b>키워드</b>는 쉼표로 적으면 검색창에서 찾을 수 있어요.</li>
       <li><b>약점 질문</b> 탭에는 면접관이 물어볼 만한 약한 부분(낮은 등급, 적은 활동)을 질문으로 적고 답변을 준비해요.</li>
       <li><b>공통 질문</b> 탭에는 지원동기 같은 기본 질문이 들어 있어요. 답변을 쓰면 말하는 시간이 자동으로 계산돼요(1분에 약 300자 기준).</li>
       <li>오른쪽 위 <b>면접 일정</b>을 누르면 대학별로 이름과 날짜를 여러 개 넣을 수 있고, 가까운 순서대로 D-day가 떠요.</li>
@@ -307,7 +321,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       </div>
     </fieldset>
     <fieldset><legend>담을 내용</legend>
-      <label><input type="checkbox" id="p-an" checked> 꼬리 질문·개념·기타·키워드 칸</label>
+      <label><input type="checkbox" id="p-an" checked> 분석 표·키워드 칸</label>
       <label><input type="checkbox" id="p-color" checked> 글자색·형광펜</label>
     </fieldset>
     <p class="note" id="pnote"></p>
@@ -537,12 +551,12 @@ const NOTE_KEY = "dI78rfvu2axN71anadkRucyz0vjAzNwK";
           const sp = speak(c);
           return `<section class="qa"><div class="q"><span>Q.</span>${esc(c.question)}</div>${c.related ? `<div class="rel">관련: ${esc(c.related)}</div>` : ''}<div class="a">${body(c.content) || '<span class="none">답변 없음</span>'}</div>${sp.n ? `<div class="t">말하면 약 ${sp.t} · ${sp.n}자</div>` : ''}</section>`;
         }
-        const secs2 = [['꼬리 질문', c.tail], ['개념·의미', c.concept], ...extrasOf(c).map(x => [x.title || '기타', x.body])].filter(([, v]) => toText(v).trim());
+        const secs2 = [['꼬리 질문', c.tail], ['개념 뜻', c.concept], ...extrasOf(c).map(x => [x.title || '기타', x.body])].filter(([, v]) => toText(v).trim());
         const an = o.an && (secs2.length || (c.keywords || '').trim());
         return `<table class="rec"><colgroup><col style="width:13mm"><col style="width:30mm"><col></colgroup>
           <tr><th>학년</th><th>${k === 's' ? '과목' : '영역'}</th><th>${k === 's' ? '세특 내용' : '활동 내용'}</th></tr>
           <tr><td class="c">${esc(c.grade)}</td><td class="c b">${esc(c.subject)}</td><td>${body(c.content)}</td></tr>
-          ${an ? `<tr class="an"><td colspan="3">${secs2.map(([t, v]) => `<div class="lab">${esc(t)}</div><div class="anb">${body(v)}</div>`).join('')}${c.keywords ? `<div class="kw">키워드 · ${esc(c.keywords)}</div>` : ''}</td></tr>` : ''}</table>`;
+          ${an ? `<tr class="an"><td colspan="3"><div class="lab">분석</div>${secs2.length ? `<table class="ant">${secs2.map(([t, v]) => `<tr><th>${esc(t)}</th><td>${body(v)}</td></tr>`).join('')}</table>` : ''}${c.keywords ? `<div class="kw">키워드 · ${esc(c.keywords)}</div>` : ''}</td></tr>` : ''}</table>`;
       }).join('');
       return { k, html: `<h2>${name} <small>${list.length}</small></h2>${cardsHTML}` };
     }).filter(Boolean);
@@ -576,7 +590,7 @@ table.rec{width:100%;border-collapse:collapse;margin:0 0 4mm;border:1.2px solid 
 .rec tr.an td{border-top:1px dashed #C9D1DA;background:#F5F8FB}
 .rec tr{break-inside:avoid}
 .lab{font-size:8pt;font-weight:600;color:#1F5F8B;letter-spacing:.04em;margin-bottom:1mm}
-.anb+.lab{margin-top:2.5mm}
+.ant{width:100%;border-collapse:collapse;background:#fff;margin-bottom:1mm}.ant th{width:24mm;text-align:left;vertical-align:top;font-size:8.5pt;font-weight:600;color:#5B6878;padding:1.5mm 2mm;border:1px solid #D5DCE4;background:#F5F8FB}.ant td{padding:1.5mm 2mm;border:1px solid #D5DCE4;vertical-align:top}
 .kw{margin-top:1.5mm;font-size:8.5pt;color:#5B6878}
 .qa{border:1.2px solid #26313D;margin:0 0 4mm;break-inside:avoid}
 .qa .q{font-family:"Gowun Batang",serif;font-size:11.5pt;padding:2.5mm 3mm;border-bottom:1px solid #C9D1DA;display:flex;gap:2mm}
@@ -815,13 +829,16 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
       <div class="side">${second}</div>
       <div class="body">
         <div class="rt content" id="content-${c.id}" data-f="content" contenteditable="true" data-ph="생기부 원문을 붙여 넣으세요" aria-label="원문" role="textbox" aria-multiline="true">${clean(c.content)}</div>
-        <div class="sumhead tail">꼬리 질문</div>
-        <div class="rt summary" id="tail-${c.id}" data-f="tail" contenteditable="true" data-ph="면접관이 이어서 물어볼 질문과 답할 거리" aria-label="꼬리 질문" role="textbox" aria-multiline="true">${clean(c.tail)}</div>
-        <div class="sumhead concept">개념·의미</div>
-        <div class="rt summary" id="concept-${c.id}" data-f="concept" contenteditable="true" data-ph="활동에 나온 개념, 용어 뜻, 원리 정리" aria-label="개념과 의미" role="textbox" aria-multiline="true">${clean(c.concept)}</div>
-        ${extrasOf(c).map(x => `<div class="sumhead ex"><input class="extitle" id="xt-${c.id}-${esc(x.id)}" data-f="x:${esc(x.id)}:title" value="${esc(x.title)}" placeholder="기타 (제목을 정해요)" aria-label="칸 제목"><button class="xdel" type="button" data-x="${esc(x.id)}" aria-label="이 칸 지우기" title="이 칸 지우기">×</button></div>
-        <div class="rt summary" id="xb-${c.id}-${esc(x.id)}" data-f="x:${esc(x.id)}:body" contenteditable="true" data-ph="자유롭게 적어요" aria-label="${esc(x.title || '기타')}" role="textbox" aria-multiline="true">${clean(x.body)}</div>`).join('')}
-        <button class="addsec" type="button">+ 칸 추가</button>
+        <div class="sumhead">분석</div>
+        <div class="anwrap"><table class="antbl">
+          <colgroup><col style="width:112px"><col><col style="width:34px"></colgroup>
+          <thead><tr><th>종류</th><th>내용</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><span class="kind tail">꼬리 질문</span></td><td><div class="rt" id="tail-${c.id}" data-f="tail" contenteditable="true" data-ph="면접관이 이어서 물어볼 질문" aria-label="꼬리 질문" role="textbox" aria-multiline="true">${clean(c.tail)}</div></td><td></td></tr>
+            <tr><td><span class="kind concept">개념 뜻</span></td><td><div class="rt" id="concept-${c.id}" data-f="concept" contenteditable="true" data-ph="활동에 나온 개념, 용어 뜻" aria-label="개념 뜻" role="textbox" aria-multiline="true">${clean(c.concept)}</div></td><td></td></tr>
+            ${extrasOf(c).map(x => `<tr><td><input class="kind ex extitle" id="xt-${c.id}-${esc(x.id)}" data-f="x:${esc(x.id)}:title" value="${esc(x.title)}" placeholder="기타" aria-label="종류 이름"></td><td><div class="rt" id="xb-${c.id}-${esc(x.id)}" data-f="x:${esc(x.id)}:body" contenteditable="true" data-ph="자유롭게 적어요" aria-label="${esc(x.title || '기타')}" role="textbox" aria-multiline="true">${clean(x.body)}</div></td><td><button class="xdel" type="button" data-x="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></td></tr>`).join('')}
+          </tbody></table>
+          <button class="addsec" type="button">+ 기타 줄 추가</button></div>
         <div class="kwrow"><span>키워드</span><input class="kw" id="kw-${c.id}" data-f="keywords" value="${esc(c.keywords)}" placeholder="예: 트랜지스터, 오차 분석, 전공 연계" aria-label="키워드"></div>
       </div>
     </article>`;
@@ -937,7 +954,7 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
       pushUndo(as ? '칸 추가' : '칸 삭제', [c]);
       const ex = extrasOf(c);
       if (as) { const id = 'x' + Date.now().toString(36); ex.push({ id, title: '', body: '' }); queueSave(c); render(); document.getElementById(`xt-${c.id}-${id}`)?.focus(); }
-      else { const i = ex.findIndex(y => y.id === xd.dataset.x); if (i >= 0) ex.splice(i, 1); if (xd.dataset.x === 'x0') c.summary = ''; queueSave(c); render(); toast('칸을 지웠어요', true); }
+      else { const i = ex.findIndex(y => y.id === xd.dataset.x); if (i >= 0) ex.splice(i, 1); if (xd.dataset.x === 'x0') c.summary = ''; queueSave(c); render(); toast('줄을 지웠어요', true); }
       return;
     }
     const fb = e.target.closest('.fb');
