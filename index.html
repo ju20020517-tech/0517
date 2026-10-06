@@ -126,6 +126,15 @@ h1{font-family:var(--serif);font-size:30px;margin:0;letter-spacing:-.01em;text-w
 .apr:hover .rdel,.apr:focus-within .rdel,.rdel:focus-visible{opacity:1}
 .apr .rdel:hover{color:var(--warn);background:var(--ct)}
 @media (hover:none){.apr .rdel{opacity:.6}}
+.addwrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:2px 2px 12px}
+.addopen{font:inherit;font-size:13px;font-weight:600;color:var(--accent);background:var(--paper);border:1.5px dashed var(--accent);border-radius:999px;padding:5px 14px;cursor:pointer}
+.addopen:hover,.addopen[aria-expanded="true"]{background:var(--accent-tint)}
+.addmenu{display:inline-flex;flex-wrap:wrap;gap:6px}
+.addpick{font:inherit;font-size:13px;font-weight:600;border:0;border-radius:999px;padding:5px 14px;cursor:pointer}
+.addpick.t{background:color-mix(in srgb,var(--warn) 12%,var(--paper));color:var(--warn)}
+.addpick.k{background:var(--g2);color:var(--g2i)}
+.addpick.x{background:var(--g3);color:var(--g3i)}
+.addpick:hover{filter:brightness(.96)}
 .ap .addsec{display:block;width:100%;text-align:left;font:inherit;font-size:13px;font-weight:600;color:var(--c);background:none;border:0;border-top:1px dashed var(--rule);padding:9px 14px;cursor:pointer}
 .ap .addsec:hover{background:var(--ct)}
 @media (max-width:600px){
@@ -324,7 +333,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       <li><b>과목 카드 추가</b>를 누르고 학년 동그라미에서 학년을, 과목 칸에 과목명을 적어요. 창체는 위의 <b>창체</b> 탭에서 영역을 골라요.</li>
       <li><b>세특 내용</b> 칸에 생기부 원문을 붙여 넣어요. 오른쪽 위에 글자 수가 나와요.</li>
       <li>중요한 부분을 <b>드래그</b>하면 도구 막대가 떠요. 글자색, <mark>형광펜</mark>, 굵게, 밑줄을 바꿀 수 있고 <b>지우개</b>로 되돌려요.</li>
-      <li>원문 아래에 <b>꼬리 질문</b> 표에는 질문과 답변을, <b>개념 뜻</b> 표에는 개념과 뜻을 나눠 적어요. <b>기타</b> 표는 종류 이름을 직접 정해서 써요. 표마다 <b>+ 추가</b>로 줄을 늘리고 <b>×</b>로 지워요.</li>
+      <li>원문 아래에 원문 아래 <b>+ 추가</b>를 누르고 <b>꼬리 질문</b>(질문·답변), <b>개념 뜻</b>(개념·뜻), <b>기타</b>(종류를 직접 정해서) 중 필요한 표를 골라요. 표 아래 버튼으로 줄을 늘리고 <b>×</b>로 지워요. 줄을 다 지우면 표도 사라져요.</li>
       <li><b>생기부 질문</b> 탭에는 생기부 내용으로 나올 만한 질문을 적고, <b>과목</b>과 <b>생기부 쪽수</b>를 함께 적어 답변을 준비해요.</li>
       <li><b>공통 질문</b> 탭에는 지원동기 같은 기본 질문이 들어 있어요. 답변을 쓰면 말하는 시간이 자동으로 계산돼요(1분에 약 300자 기준).</li>
       <li>오른쪽 위 <b>면접 일정</b>을 누르면 대학별로 이름과 날짜를 여러 개 넣을 수 있고, 가까운 순서대로 D-day가 떠요.</li>
@@ -808,16 +817,19 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
   const isQA = k => k === 'w' || k === 'q';
   // 분석 칸: 꼬리 질문, 개념·의미, 직접 제목을 정하는 기타 칸(여러 개)
   function extrasOf(c) {
-    if (!Array.isArray(c.extras)) c.extras = [{ id: 'x0', title: toText(c.summary).trim() ? '분석' : '', body: c.summary || '' }];
+    if (!Array.isArray(c.extras)) c.extras = toText(c.summary).trim() ? [{ id: 'x0', title: '분석', body: c.summary }] : [];
+    c.extras = c.extras.filter(x => !(x.id === 'x0' && !(x.title || '').trim() && !toText(x.body).trim()));
     return c.extras;
   }
   // 꼬리 질문 표 (질문 | 답변), 개념 표 (개념 | 뜻)
   function tailsOf(c) {
-    if (!Array.isArray(c.tails)) c.tails = [{ id: 't0', q: c.tail || '', a: '' }];
+    if (!Array.isArray(c.tails)) c.tails = toText(c.tail).trim() ? [{ id: 't0', q: c.tail, a: '' }] : [];
+    c.tails = c.tails.filter(x => !(x.id === 't0' && !toText(x.q).trim() && !toText(x.a).trim()));
     return c.tails;
   }
   function conceptsOf(c) {
-    if (!Array.isArray(c.concepts)) c.concepts = [{ id: 'k0', term: '', mean: c.concept || '' }];
+    if (!Array.isArray(c.concepts)) c.concepts = toText(c.concept).trim() ? [{ id: 'k0', term: '', mean: c.concept }] : [];
+    c.concepts = c.concepts.filter(x => !(x.id === 'k0' && !(x.term || '').trim() && !toText(x.mean).trim()));
     return c.concepts;
   }
   const LISTS = { t: tailsOf, k: conceptsOf, x: extrasOf };
@@ -862,7 +874,7 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
     </article>`;
   }
 
-  const apanel = (c, l, title, heads, list, row, addLabel) => `<section class="ap ap-${l}"><div class="aph">${title}<span class="apn">${list.length}</span></div><div class="apc"><div class="apr head"><span></span><span>${heads[0]}</span><span>${heads[1]}</span><span></span></div>${list.map((x, i) => `<div class="apr">${row(x, i)}<button class="rdel" type="button" data-l="${l}" data-r="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></div>`).join('')}<button class="addsec" type="button" data-l="${l}">${addLabel}</button></div></section>`;
+  const apanel = (c, l, title, heads, list, row, addLabel) => !list.length ? '' : `<section class="ap ap-${l}"><div class="aph">${title}<span class="apn">${list.length}</span></div><div class="apc"><div class="apr head"><span></span><span>${heads[0]}</span><span>${heads[1]}</span><span></span></div>${list.map((x, i) => `<div class="apr">${row(x, i)}<button class="rdel" type="button" data-l="${l}" data-r="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></div>`).join('')}<button class="addsec" type="button" data-l="${l}">${addLabel}</button></div></section>`;
   const rtc = (c, f, v, ph, label, cls = '') => `<div class="rt ${cls}" id="${f.replace(/:/g, '-')}-${c.id}" data-f="${f}" contenteditable="true" data-ph="${ph}" aria-label="${label}" role="textbox" aria-multiline="true">${clean(v)}</div>`;
   function cardHTML(c) {
     if (isQA(c.kind)) return qaHTML(c);
@@ -890,6 +902,7 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
           ${apanel(c, 't', '꼬리 질문', ['질문', '답변'], tailsOf(c), (x, i) => `<span class="no">Q${i + 1}</span>${rtc(c, `t:${x.id}:q`, x.q, '면접관이 이어서 물어볼 질문', '꼬리 질문', 'c1')}${rtc(c, `t:${x.id}:a`, x.a, '내 답변', '답변', 'c2')}`, '+ 꼬리 질문 추가')}
           ${apanel(c, 'k', '개념 뜻', ['개념', '뜻'], conceptsOf(c), (x, i) => `<span class="no">${i + 1}</span><input class="cell c1" id="k-${c.id}-${esc(x.id)}" data-f="k:${esc(x.id)}:term" value="${esc(x.term)}" placeholder="개념, 용어" aria-label="개념">${rtc(c, `k:${x.id}:mean`, x.mean, '뜻, 원리', '뜻', 'c2')}`, '+ 개념 추가')}
           ${apanel(c, 'x', '기타', ['종류', '내용'], extrasOf(c), (x, i) => `<span class="no">${i + 1}</span><input class="cell c1" id="xt-${c.id}-${esc(x.id)}" data-f="x:${esc(x.id)}:title" value="${esc(x.title)}" placeholder="예: 느낀 점" aria-label="종류 이름">${rtc(c, `x:${x.id}:body`, x.body, '자유롭게 적어요', x.title || '기타', 'c2')}`, '+ 기타 추가')}
+          <div class="addwrap"><button class="addopen" type="button" aria-expanded="false">+ 추가</button><span class="addmenu" hidden><button class="addpick t" type="button" data-l="t">꼬리 질문</button><button class="addpick k" type="button" data-l="k">개념 뜻</button><button class="addpick x" type="button" data-l="x">기타</button></span></div>
         </div>
       </div>
     </article>`;
@@ -999,7 +1012,9 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
       const c = blank(state.kind); cards.set(c.id, c); render();
       const t = document.getElementById('subj-' + c.id); t && t.focus(); return;
     }
-    const as = e.target.closest('.addsec'), rd = e.target.closest('.rdel');
+    const ao = e.target.closest('.addopen');
+    if (ao) { const m = ao.nextElementSibling; m.hidden = !m.hidden; ao.setAttribute('aria-expanded', !m.hidden); return; }
+    const as = e.target.closest('.addsec, .addpick'), rd = e.target.closest('.rdel');
     if (as || rd) {
       const c = cards.get(e.target.closest('.card').dataset.id); if (!c) return;
       const l = (as || rd).dataset.l, list = LISTS[l](c);
