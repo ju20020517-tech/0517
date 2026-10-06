@@ -332,6 +332,20 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
 </div>
 
 <script>
+// ======================= 여기만 바꾸세요 =======================
+// Firebase 콘솔 → 프로젝트 설정 → 내 앱(웹) 에 나오는 firebaseConfig 값을 그대로 붙여 넣어요. (databaseURL 꼭 포함)
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyD39ethq0IyRTp8pkHYYOanuYzDtNqwXcc",
+  authDomain: "eeeee-aa87e.firebaseapp.com",
+  databaseURL: "https://eeeee-aa87e-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "eeeee-aa87e",
+  storageBucket: "eeeee-aa87e.firebasestorage.app",
+  messagingSenderId: "935952485389",
+  appId: "1:935952485389:web:576c933796d3b8a7c99944"
+};
+// 내 노트의 비밀 열쇠. 이 값을 아는 사람만 노트를 읽고 쓸 수 있어요. 다른 사람에게 보여 주지 마세요.
+const NOTE_KEY = "dI78rfvu2axN71anadkRucyz0vjAzNwK";
+// ===============================================================
 (() => {
   const cards = new Map();          // id -> record
   const state = { kind: 's', grade: '', q: '', view: 'cards' };
@@ -934,6 +948,7 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
     snap.docChanges().forEach(ch => {
       const id = ch.doc.id;
       if (ch.type === 'removed') { if (cards.has(id)) { cards.delete(id); structural = true; } return; }
+      if (ch.doc.metadata && ch.doc.metadata.hasPendingWrites) return;   // 내가 방금 쓴 것
       if (id === focusId || timers.has(id) && cards.get(id) && !cards.get(id).draft && chainsPending(id)) return;
       const had = cards.has(id);
       cards.set(id, { id, ...ch.doc.data(), draft: false });
@@ -954,21 +969,73 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
 
   ensureDraft(); render();
   (async () => {
-    db = null;   // 독립 실행: 이 브라우저(localStorage)에 저장
-    if (!db) {
+    const URL0 = (FIREBASE_CONFIG.databaseURL || '').replace(/\/+$/, '');
+    if (!URL0) {
       local = true;
       let first = false; try { first = localStorage.getItem(LS) === null; } catch {}
       (first ? SEED : lsLoad()).forEach(c => cards.set(c.id, { ...c, draft: false }));
       if (first) lsSave();
-      prune();
-      ensureDraft(); render();
-      saveEl.textContent = '이 브라우저에 저장돼요';
+      prune(); ensureDraft(); render();
+      saveEl.textContent = 'Firebase 설정값(databaseURL)이 비어 있어요 · 이 브라우저에만 저장돼요';
+      saveEl.style.color = 'var(--warn)'; saveEl.style.whiteSpace = 'normal';
       return;
     }
-    col = db.collection('records');
-    col.onSnapshot(applySnapshot, () => { saveEl.textContent = '연결이 끊겼어요. 새로고침해 주세요.'; });
-    try { commentsNs = await window.claude.use('comments'); } catch { commentsNs = null; }
-    if (commentsNs) { if (document.activeElement && document.activeElement.closest && document.activeElement.closest('.card')) needRender = true; else render(); }
+    // Firebase Realtime Database에 직접(REST) 읽고 써요. 외부 프로그램이 필요 없어요.
+    const BASE = URL0 + '/notebooks/' + encodeURIComponent(NOTE_KEY) + '/records';
+    const warn = msg => { saveEl.textContent = msg; saveEl.style.color = 'var(--warn)'; saveEl.style.whiteSpace = 'normal'; };
+    const ok = () => { saveEl.style.color = ''; };
+    async function req(method, path, body) {
+      const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 15000);
+      let r;
+      try { r = await fetch(BASE + path + '.json', { method, body: body === undefined ? undefined : JSON.stringify(body), signal: ctl.signal, cache: 'no-store' }); }
+      catch (e) { throw Object.assign(new Error('net'), { code: 'net' }); }
+      finally { clearTimeout(t); }
+      if (r.status === 401 || r.status === 403) throw Object.assign(new Error('perm'), { code: 'perm' });
+      if (!r.ok) throw Object.assign(new Error('http ' + r.status), { code: 'http' });
+      return r.json();
+    }
+    const errMsg = e => e && e.code === 'perm' ? 'Firebase 권한이 없어요. Realtime Database 규칙에 notebooks 부분이 게시됐는지 확인해 주세요.'
+      : e && e.code === 'net' ? 'Firebase 서버에 접속하지 못했어요. 인터넷 연결이나 databaseURL을 확인해 주세요.'
+      : 'Firebase 오류: ' + (e && e.message || e);
+    const server = new Map();          // 서버에 있는 마지막 내용 (id -> JSON 문자열)
+    const clean0 = d => JSON.parse(JSON.stringify(d));
+    col = { doc: id => ({
+      set: async d => { const v = clean0(d); pendingIds.add(id); try { await req('PUT', '/' + encodeURIComponent(id), v); server.set(id, JSON.stringify(v)); ok(); } catch (e) { warn(errMsg(e)); throw e; } finally { pendingIds.delete(id); } },
+      delete: async () => { pendingIds.add(id); try { await req('DELETE', '/' + encodeURIComponent(id)); server.delete(id); } catch (e) { warn(errMsg(e)); throw e; } finally { pendingIds.delete(id); } },
+    }) };
+    function sync(all) {
+      all = all || {};
+      const changes = [], fc = document.activeElement && document.activeElement.closest && document.activeElement.closest('.card'), focusId = fc && fc.dataset.id;
+      for (const [id, v] of Object.entries(all)) {
+        if (pendingIds.has(id) || id === focusId) continue;   // 지금 쓰는 카드는 다 쓴 뒤에 받아요
+        const s = JSON.stringify(v);
+        if (server.get(id) === s) continue;
+        changes.push({ type: server.has(id) ? 'modified' : 'added', doc: { id, data: () => v, metadata: {} } });
+        server.set(id, s);
+      }
+      for (const id of [...server.keys()]) if (!(id in all) && !pendingIds.has(id) && id !== focusId) { server.delete(id); changes.push({ type: 'removed', doc: { id, data: () => ({}), metadata: {} } }); }
+      if (changes.length) applySnapshot({ docChanges: () => changes });
+    }
+    saveEl.textContent = 'Firebase 연결 중…';
+    try {
+      let all = await req('GET', '');
+      if (!all || !Object.keys(all).length) {                // 처음 연결: 원래 내용을 Firebase로 옮겨요
+        const saved = lsLoad(), src = saved.length ? saved : SEED, up = {};
+        src.forEach(r => { const { id, draft, ...rest } = r; up[id] = rest; });
+        await req('PUT', '', clean0(up));
+        all = up;
+      }
+      sync(all); saveEl.textContent = '저장됨'; ok();
+    } catch (e) {
+      warn(errMsg(e));
+      return;
+    }
+    // 다른 기기에서 고친 내용 가져오기
+    let busy = false;
+    const pull = async () => { if (busy || document.hidden || drag) return; busy = true; try { sync(await req('GET', '')); } catch (e) { warn(errMsg(e)); } finally { busy = false; } };
+    setInterval(pull, 10000);
+    window.addEventListener('focus', pull);
+    document.addEventListener('visibilitychange', pull);
   })();
 })();
 </script>
