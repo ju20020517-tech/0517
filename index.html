@@ -1,0 +1,1002 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>주여니의 면접 준비 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#EEF2F5; --paper:#FFFFFF; --ink:#18212C; --soft:#5B6878; --faint:#8D99A7;
+  --rule:#D5DCE4; --rule-strong:#26313D; --accent:#1F5F8B; --accent-tint:#E4EEF6;
+  --sum:#F7FAFC; --warn:#B4412F;
+  --g1:#DCE9F6; --g1i:#1F5F8B; --g2:#DDF0E3; --g2i:#2A6B45; --g3:#FBE7D4; --g3i:#8A4B17;
+  --shadow:0 1px 2px rgba(24,33,44,.06),0 6px 20px rgba(24,33,44,.05);
+  --fc-red:#C62828; --fc-blue:#1565C0; --fc-green:#2E7D32; --fc-purple:#7B1FA2; --fc-orange:#D9480F;
+  --hl-yellow:#FFEF8A; --hl-green:#C6F0C2; --hl-pink:#FFCFE1; --hl-blue:#CBE5FF; --hl-ink:#18212C;
+  --serif:"Gowun Batang","Nanum Myeongjo",serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --ground:#12171D; --paper:#1A2129; --ink:#E6EBF0; --soft:#A7B2BE; --faint:#77838F;
+  --rule:#2E3943; --rule-strong:#9FB0C0; --accent:#7DB3DA; --accent-tint:#1E3243;
+  --sum:#161C23; --warn:#E58A77;
+  --g1:#1E3243; --g1i:#9CC7E8; --g2:#1D3527; --g2i:#8FD1A7; --g3:#3A2A1B; --g3i:#EDB985;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  --fc-red:#FF8A80; --fc-blue:#8AB4FF; --fc-green:#86D08A; --fc-purple:#D59CE3; --fc-orange:#FFAA72;
+  --hl-yellow:#6A5C10; --hl-green:#24512B; --hl-pink:#5E2442; --hl-blue:#1D4064; --hl-ink:#F1F4F7;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#12171D; --paper:#1A2129; --ink:#E6EBF0; --soft:#A7B2BE; --faint:#77838F;
+  --rule:#2E3943; --rule-strong:#9FB0C0; --accent:#7DB3DA; --accent-tint:#1E3243;
+  --sum:#161C23; --warn:#E58A77;
+  --g1:#1E3243; --g1i:#9CC7E8; --g2:#1D3527; --g2i:#8FD1A7; --g3:#3A2A1B; --g3i:#EDB985;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  --fc-red:#FF8A80; --fc-blue:#8AB4FF; --fc-green:#86D08A; --fc-purple:#D59CE3; --fc-orange:#FFAA72;
+  --hl-yellow:#6A5C10; --hl-green:#24512B; --hl-pink:#5E2442; --hl-blue:#1D4064; --hl-ink:#F1F4F7;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;padding:0 16px}
+.wrap{max-width:920px;margin:0 auto;padding-block:40px 80px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:24px}
+h1{font-family:var(--serif);font-size:30px;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--soft);margin:4px 0 0;font-size:14px}
+.stat{display:flex;gap:16px;font-size:13px;color:var(--soft);font-variant-numeric:tabular-nums}
+.stat b{color:var(--ink);font-weight:600}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);padding-block:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-bottom:1px solid var(--rule);margin-bottom:20px}
+.tabs{display:flex;background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:3px}
+.tabs button{border:0;background:none;font:inherit;font-weight:500;color:var(--soft);padding:6px 16px;border-radius:7px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.chips{display:flex;gap:6px}
+.chips button{font:inherit;font-size:13px;border:1px solid var(--rule);background:var(--paper);color:var(--soft);padding:5px 12px;border-radius:999px;cursor:pointer}
+.chips button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-tint);font-weight:600}
+.search{flex:1 1 180px;min-width:0;font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--rule);border-radius:10px;background:var(--paper);color:var(--ink)}
+.save{font-size:12px;color:var(--faint);margin-left:auto;white-space:nowrap}
+.list{display:flex;flex-direction:column;gap:20px}
+
+/* the record box, same layout as the spreadsheet: 학년 | 과목 | 세특 내용 → 분석 */
+.card{background:var(--paper);border:1.5px solid var(--rule-strong);border-radius:4px;box-shadow:var(--shadow);display:grid;grid-template-columns:76px 132px 1fr;overflow:hidden}
+.h{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--soft);padding:8px 12px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.h+.h{border-left:1px solid var(--rule)}
+.side{border-right:1px solid var(--rule);padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.side+.side{padding:12px 10px}
+.grade{appearance:none;font:inherit;font-weight:600;font-size:15px;text-align:center;width:52px;height:52px;border-radius:50%;border:1.5px dashed var(--rule);background:transparent;color:var(--faint);cursor:pointer}
+.grade[data-g="1"]{background:var(--g1);color:var(--g1i);border:0}
+.grade[data-g="2"]{background:var(--g2);color:var(--g2i);border:0}
+.grade[data-g="3"]{background:var(--g3);color:var(--g3i);border:0}
+.subj{width:100%;font:inherit;font-weight:600;font-size:15px;text-align:center;border:0;border-bottom:1px solid var(--rule);background:transparent;color:var(--ink);padding:4px 2px}
+.subj::placeholder{color:var(--faint);font-weight:400}
+.body{display:flex;flex-direction:column;min-width:0}
+.rt{width:100%;font:inherit;color:var(--ink);background:transparent;padding:12px 16px;line-height:1.75;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;cursor:text}
+.rt:empty::before{content:attr(data-ph);color:var(--faint);pointer-events:none}
+.kw::placeholder{color:var(--faint)}
+.rt [data-fc="red"]{color:var(--fc-red)} .rt [data-fc="blue"]{color:var(--fc-blue)} .rt [data-fc="green"]{color:var(--fc-green)}
+.rt [data-fc="purple"]{color:var(--fc-purple)} .rt [data-fc="orange"]{color:var(--fc-orange)}
+.rt [data-hl]{color:var(--hl-ink);border-radius:2px;padding:0 1px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.rt [data-hl="yellow"]{background:var(--hl-yellow)} .rt [data-hl="green"]{background:var(--hl-green)}
+.rt [data-hl="pink"]{background:var(--hl-pink)} .rt [data-hl="blue"]{background:var(--hl-blue)}
+.rt [data-hl] [data-fc]{color:var(--hl-ink)}
+.tb{position:fixed;z-index:20;display:flex;align-items:center;gap:4px;padding:6px;background:var(--paper);border:1px solid var(--rule);border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.18);flex-wrap:wrap;max-width:calc(100vw - 32px)}
+.tb .grp{display:flex;align-items:center;gap:3px}
+.tb .sep{width:1px;height:20px;background:var(--rule);margin:0 3px}
+.tb button{font:inherit;font-size:13px;width:28px;height:28px;border-radius:6px;border:1px solid transparent;background:none;color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0}
+.tb button:hover{border-color:var(--rule)}
+.tb .fc span{font-weight:700;font-size:15px}
+.tb .hl span{width:16px;height:16px;border-radius:4px;display:block}
+.tb .lbl{font-size:11px;color:var(--faint);padding:0 2px}
+.help{background:var(--paper);border:1px solid var(--rule);border-radius:10px;margin-bottom:20px;font-size:14px}
+.help summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--accent)}
+.help ol{margin:0;padding:0 18px 14px 34px;color:var(--soft);display:grid;gap:4px}
+.help b{color:var(--ink);font-weight:600}
+.help mark{background:var(--hl-yellow);color:var(--hl-ink);padding:0 2px;border-radius:2px}
+.content{min-height:150px}
+.count{font-weight:500;letter-spacing:0;font-variant-numeric:tabular-nums;color:var(--faint)}
+.count.over{color:var(--warn);font-weight:600}
+.sumhead{display:flex;align-items:center;gap:8px;padding:8px 16px 0;border-top:1px dashed var(--rule);background:var(--sum);font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+.sumhead::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.summary{background:var(--sum);min-height:84px;padding-top:6px}
+.kwrow{display:flex;align-items:center;gap:8px;padding:0 16px 12px;background:var(--sum)}
+.kwrow span{font-size:12px;color:var(--faint);white-space:nowrap}
+.kw{flex:1;min-width:0;font:inherit;font-size:14px;border:0;border-bottom:1px solid var(--rule);background:transparent;color:var(--ink);padding:3px 0}
+.del{font:inherit;font-size:12px;border:0;background:none;color:var(--faint);cursor:pointer;padding:2px 4px;border-radius:4px}
+.del:hover{color:var(--warn)}
+.del.arm{background:var(--warn);color:var(--paper)}
+.add{font:inherit;font-weight:600;color:var(--accent);background:transparent;border:1.5px dashed var(--accent);border-radius:4px;padding:16px;cursor:pointer;width:100%}
+.add:hover{background:var(--accent-tint)}
+.empty{color:var(--soft);text-align:center;padding:32px 0;font-size:14px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+textarea:focus-visible,.rt:focus-visible,.kw:focus-visible,.subj:focus-visible{outline:none;box-shadow:inset 0 -2px 0 var(--accent)}
+
+.card.qa{display:block}
+.qa .qhead{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 16px;border-bottom:1px solid var(--rule);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--soft)}
+.qa .qhead .tag{color:var(--accent)}
+.qa .qhead .tag.w{color:var(--warn)}
+.qa .question{display:block;width:100%;font:inherit;font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);padding:14px 16px}
+.qa .question::placeholder{color:var(--faint);font-weight:400}
+.qa .related{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--rule);font-size:12px;color:var(--faint)}
+.qa .related input{flex:1;min-width:0;font:inherit;font-size:14px;border:0;background:transparent;color:var(--ink)}
+.qa .answer{min-height:110px}
+.qa .ansfoot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:8px 16px 12px;border-top:1px dashed var(--rule);background:var(--sum);font-size:13px;color:var(--soft);font-variant-numeric:tabular-nums}
+.pill{font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--accent-tint);color:var(--accent)}
+.pill.ok{background:var(--g2);color:var(--g2i)} .pill.long{background:var(--g3);color:var(--g3i)} .pill.over{background:var(--warn);color:var(--paper)}
+.fb{font:inherit;font-size:12px;border:1px solid var(--rule);background:var(--paper);color:var(--accent);cursor:pointer;padding:2px 10px;border-radius:999px}
+.fb:hover{background:var(--accent-tint)}
+.ddwrap{position:relative;max-width:100%}
+.dday{font:inherit;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:flex-end;gap:4px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:8px 14px;cursor:pointer;color:var(--ink);max-width:min(560px,100%)}
+.dday:hover{border-color:var(--accent)}
+.dc{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap}
+.dc .u{font-size:12px;color:var(--soft)}
+.dc b{font-family:var(--serif);font-size:20px;color:var(--accent);font-variant-numeric:tabular-nums}
+.dc b.today{color:var(--warn)}
+.dc.past b{font-size:14px;color:var(--faint)}
+.dday .ph{font-size:13px;color:var(--soft)}
+.dday .ed{font-size:12px;color:var(--faint);align-self:center}
+.ddpanel{position:absolute;right:0;top:calc(100% + 6px);z-index:25;background:var(--paper);border:1px solid var(--rule);border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.18);padding:14px;width:min(380px,calc(100vw - 32px));display:flex;flex-direction:column;gap:10px}
+.ddpanel h3{margin:0;font-size:14px}
+.ddpanel p{margin:0;font-size:12px;color:var(--faint)}
+#ddRows{display:flex;flex-direction:column;gap:6px}
+.ddrow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center}
+.ddrow input{font:inherit;font-size:14px;border:1px solid var(--rule);border-radius:7px;padding:5px 8px;background:var(--ground);color:var(--ink);min-width:0}
+.ddrow .x{border:0;background:none;color:var(--faint);font-size:18px;line-height:1;cursor:pointer;width:30px;height:30px;border-radius:6px}
+.ddrow .x:hover{color:var(--warn);background:var(--accent-tint)}
+.stats{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.tabs{flex-wrap:wrap}
+.tabgroups{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:flex-end}
+.tg{display:flex;flex-direction:column;gap:4px}
+.tgl{font-size:11px;font-weight:600;color:var(--faint);letter-spacing:.06em;padding-left:6px}
+.tg.iv .tabs button[aria-selected="true"]{background:var(--accent);color:var(--paper)}
+.stat .grp{display:flex;gap:12px}
+.stat .grp+.grp{padding-left:14px;border-left:1px solid var(--rule)}
+.stat .gl{color:var(--faint)}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.tool{font:inherit;font-size:13px;font-weight:500;border:1px solid var(--rule);background:var(--paper);color:var(--ink);padding:7px 12px;border-radius:10px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
+.tool:hover:not(:disabled){border-color:var(--accent)}
+.tool:disabled{color:var(--faint);cursor:default}
+.tool[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-tint)}
+.tool .n{font-variant-numeric:tabular-nums;color:var(--soft);font-size:12px}
+.tool svg{flex:none}
+.drag{cursor:grab;touch-action:none;border:0;background:none;color:var(--faint);font-size:15px;line-height:1;padding:3px 5px;border-radius:5px;letter-spacing:-2px}
+.drag:hover,.drag:focus-visible{color:var(--accent);background:var(--accent-tint)}
+.h .drag{margin-left:-6px}
+.ctitle{display:none}
+.list.compact .card{display:block;animation:none}
+.list.compact .card>*:not(.ctitle){display:none}
+.list.compact .ctitle{display:flex;align-items:center;gap:10px;padding:12px 16px;font-weight:600}
+.ctitle .g{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent-tint);color:var(--accent)}
+.card.dragging{outline:2px solid var(--accent);box-shadow:0 14px 34px rgba(0,0,0,.2);position:relative;z-index:3}
+body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 10px 10px 16px;border-radius:10px;display:flex;gap:12px;align-items:center;font-size:14px;z-index:40;box-shadow:0 8px 28px rgba(0,0,0,.25);max-width:calc(100vw - 32px)}
+.toast button{font:inherit;font-weight:600;background:transparent;color:inherit;border:1px solid currentColor;border-radius:7px;padding:3px 10px;cursor:pointer;opacity:.9}
+.trash-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.trash-head h2{font-family:var(--serif);font-size:20px;margin:0}
+.trash-head p{margin:2px 0 0;color:var(--soft);font-size:13px}
+.trow{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;align-items:center}
+.trow .meta{font-size:12px;color:var(--faint)}
+.trow .ttl{font-weight:600}
+.trow .pv{color:var(--soft);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trow .acts{grid-row:1/4;grid-column:2;display:flex;gap:6px}
+.btn{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--rule);background:var(--paper);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.btn.danger{color:var(--warn)}
+.btn.arm{background:var(--warn);border-color:var(--warn);color:var(--paper)}
+.scrim{position:fixed;inset:0;background:rgba(10,16,24,.42);z-index:50;display:grid;place-items:center;padding:16px}
+.panel{background:var(--paper);color:var(--ink);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.3);width:min(440px,100%);padding:22px;display:flex;flex-direction:column;gap:16px;max-height:calc(100% - 32px);overflow:auto}
+.panel h2{font-family:var(--serif);font-size:20px;margin:0}
+.panel fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.panel legend{font-size:12px;font-weight:600;color:var(--soft);letter-spacing:.04em;margin-bottom:6px}
+.panel label{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer}
+.panel .row{display:flex;flex-wrap:wrap;gap:6px 14px}
+.panel .n{color:var(--faint);font-size:12px;font-variant-numeric:tabular-nums}
+.panel .acts{display:flex;justify-content:flex-end;gap:8px}
+.panel .note{font-size:13px;color:var(--soft);margin:0;min-height:1.2em}
+@media print{
+  .bar,.help,.add,.del,.drag,.fb,.tb,.toast,.tools,.ddpanel,.dday .ed{display:none!important}
+  body{background:#fff}
+  .card{box-shadow:none;break-inside:avoid}
+  .rt [data-hl]{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (max-width:600px){
+  .stats{align-items:flex-start}
+  .card{grid-template-columns:64px 1fr}
+  .h.hb{display:none}
+  .side+.side{border-right:0}
+  .body{grid-column:1/-1;border-top:1px solid var(--rule)}
+  h1{font-size:25px}
+}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .25s ease-out both}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>주여니의 면접 준비 노트</h1>
+      <p class="sub">과목 하나에 카드 하나. 원문을 붙여 넣고 아래 분석 칸에 무엇이 드러나는지 적어요.</p>
+    </div>
+    <div class="stats">
+      <div class="ddwrap">
+        <button class="dday" id="ddBtn" type="button" aria-expanded="false" aria-controls="ddPanel" title="면접 일정 편집"></button>
+        <div class="ddpanel" id="ddPanel" hidden role="dialog" aria-label="면접 일정">
+          <h3>면접 일정</h3>
+          <p>대학마다 이름과 날짜를 넣어요. 위쪽 D-day는 가까운 날짜부터 보여요.</p>
+          <div id="ddRows"></div>
+          <button class="btn" id="ddAdd" type="button">+ 대학 추가</button>
+        </div>
+      </div>
+      <div class="stat"><span class="grp"><span class="gl">생기부 분석</span><span>세특 <b id="nS">0</b></span><span>창체 <b id="nC">0</b></span></span><span class="grp"><span class="gl">면접 대비</span><span>약점 <b id="nW">0</b></span><span>공통 <b id="nQ">0</b></span></span></div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="tabgroups">
+      <div class="tg"><span class="tgl">생기부 분석</span>
+        <div class="tabs" role="tablist" aria-label="생기부 분석">
+          <button id="tab-s" role="tab" aria-selected="true" data-kind="s">교과 세특</button>
+          <button id="tab-c" role="tab" aria-selected="false" data-kind="c">창체</button>
+        </div>
+      </div>
+      <div class="tg iv"><span class="tgl">면접 질문 대비</span>
+        <div class="tabs" role="tablist" aria-label="면접 질문 대비">
+          <button id="tab-w" role="tab" aria-selected="false" data-kind="w">약점 질문</button>
+          <button id="tab-q" role="tab" aria-selected="false" data-kind="q">공통 질문</button>
+        </div>
+      </div>
+    </div>
+    <div class="chips" id="chips">
+      <button aria-pressed="true" data-g="">전체</button>
+      <button aria-pressed="false" data-g="1">1학년</button>
+      <button aria-pressed="false" data-g="2">2학년</button>
+      <button aria-pressed="false" data-g="3">3학년</button>
+    </div>
+    <input id="q" class="search" type="search" placeholder="과목·키워드 검색">
+    <div class="tools">
+      <button class="tool" id="undo" type="button" disabled title="되돌리기 (Ctrl+Z)"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 3.5 2.5 6.5l3 3"/><path d="M2.5 6.5h7a4 4 0 0 1 0 8H7"/></svg>되돌리기</button>
+      <button class="tool" id="trashBtn" type="button" aria-pressed="false"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg>휴지통 <span class="n" id="nT">0</span></button>
+      <button class="tool" id="printBtn" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 6V2.5h7V6M4.5 11.5h-2v-5h11v5h-2"/><path d="M4.5 9.5h7v4h-7z"/></svg>인쇄</button>
+      <button class="tool" id="exportBtn" type="button" title="모든 카드를 파일로 저장"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M2.5 13.5h11"/></svg>백업 받기</button>
+      <button class="tool" id="importBtn" type="button" title="백업 파일에서 불러오기"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10.5v-8M4.5 6 8 2.5 11.5 6M2.5 13.5h11"/></svg>백업 불러오기</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+    </div>
+    <span class="save" id="save">불러오는 중…</span>
+  </div>
+
+  <details class="help" id="help">
+    <summary>사용법</summary>
+    <ol>
+      <li><b>과목 카드 추가</b>를 누르고 학년 동그라미에서 학년을, 과목 칸에 과목명을 적어요. 창체는 위의 <b>창체</b> 탭에서 영역을 골라요.</li>
+      <li><b>세특 내용</b> 칸에 생기부 원문을 붙여 넣어요. 오른쪽 위에 글자 수가 나와요.</li>
+      <li>중요한 부분을 <b>드래그</b>하면 도구 막대가 떠요. 글자색, <mark>형광펜</mark>, 굵게, 밑줄을 바꿀 수 있고 <b>지우개</b>로 되돌려요.</li>
+      <li>아래 <b>분석</b> 칸에 이 활동에서 드러나는 역량, 전공 연계, 보완할 점을 적고, <b>키워드</b>는 쉼표로 적어요. 검색창에서 키워드로 찾을 수 있어요.</li>
+      <li><b>약점 질문</b> 탭에는 면접관이 물어볼 만한 약한 부분(낮은 등급, 적은 활동)을 질문으로 적고 답변을 준비해요.</li>
+      <li><b>공통 질문</b> 탭에는 지원동기 같은 기본 질문이 들어 있어요. 답변을 쓰면 말하는 시간이 자동으로 계산돼요(1분에 약 300자 기준).</li>
+      <li>오른쪽 위 <b>면접 일정</b>을 누르면 대학별로 이름과 날짜를 여러 개 넣을 수 있고, 가까운 순서대로 D-day가 떠요.</li>
+      <li>카드 왼쪽 위 <b>⠿</b>를 잡고 끌면 순서를 바꿀 수 있어요. 끄는 동안에는 카드가 한 줄로 접혀서 옮기기 쉬워요. 키보드로는 ⠿를 누른 뒤 ↑↓ 키를 써요.</li>
+      <li><b>삭제</b>하면 <b>휴지통</b>으로 가요. 휴지통에서 복원하거나 영구 삭제할 수 있어요. 실수했으면 <b>되돌리기</b>(입력칸 밖에서 Ctrl+Z)를 눌러요.</li>
+      <li><b>인쇄</b>를 누르고 인쇄할 부분을 고르면 A4 인쇄 창이 바로 떠요. PDF로 저장하려면 인쇄 창에서 'PDF로 저장'을 고르면 돼요.</li>
+      <li>입력하면 이 브라우저에 자동으로 저장돼요. 브라우저 기록을 지우거나 다른 기기에서 열면 내용이 안 보이니, 가끔 <b>백업 받기</b>로 파일을 받아 두세요. 다른 기기에서는 <b>백업 불러오기</b>로 그 파일을 열면 그대로 이어서 쓸 수 있어요.</li>
+    </ol>
+  </details>
+
+  <div class="list" id="list"></div>
+</div>
+
+<div class="toast" id="toast" hidden role="status"><span id="toastMsg"></span><button id="toastUndo" type="button">되돌리기</button></div>
+
+<div class="scrim" id="printSheet" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="ptitle">
+    <h2 id="ptitle">인쇄하기</h2>
+    <fieldset><legend>생기부 분석</legend>
+      <label><input type="checkbox" id="pk-s" value="s" checked> 교과 세특 <span class="n" id="pn-s"></span></label>
+      <label><input type="checkbox" id="pk-c" value="c" checked> 창의적 체험활동 <span class="n" id="pn-c"></span></label>
+    </fieldset>
+    <fieldset><legend>면접 질문 대비</legend>
+      <label><input type="checkbox" id="pk-w" value="w" checked> 약점 질문 <span class="n" id="pn-w"></span></label>
+      <label><input type="checkbox" id="pk-q" value="q" checked> 공통 질문 <span class="n" id="pn-q"></span></label>
+    </fieldset>
+    <fieldset><legend>학년 (세특·창체)</legend>
+      <div class="row">
+        <label><input type="radio" name="pg" id="pg-0" value="" checked> 전체</label>
+        <label><input type="radio" name="pg" id="pg-1" value="1"> 1학년</label>
+        <label><input type="radio" name="pg" id="pg-2" value="2"> 2학년</label>
+        <label><input type="radio" name="pg" id="pg-3" value="3"> 3학년</label>
+      </div>
+    </fieldset>
+    <fieldset><legend>담을 내용</legend>
+      <label><input type="checkbox" id="p-an" checked> 분석·키워드 칸</label>
+      <label><input type="checkbox" id="p-color" checked> 글자색·형광펜</label>
+    </fieldset>
+    <p class="note" id="pnote"></p>
+    <div class="acts"><button class="btn" type="button" id="pcancel">닫기</button><button class="btn pri" type="button" id="pgo">인쇄용 파일 만들기</button></div>
+  </div>
+</div>
+
+<div class="tb" id="tb" hidden role="toolbar" aria-label="글자 꾸미기">
+  <div class="grp"><span class="lbl">글자</span>
+    <button class="fc" data-fc="" title="기본색"><span style="color:var(--ink)">A</span></button>
+    <button class="fc" data-fc="red" title="빨강"><span style="color:var(--fc-red)">A</span></button>
+    <button class="fc" data-fc="blue" title="파랑"><span style="color:var(--fc-blue)">A</span></button>
+    <button class="fc" data-fc="green" title="초록"><span style="color:var(--fc-green)">A</span></button>
+    <button class="fc" data-fc="purple" title="보라"><span style="color:var(--fc-purple)">A</span></button>
+    <button class="fc" data-fc="orange" title="주황"><span style="color:var(--fc-orange)">A</span></button>
+  </div>
+  <div class="sep"></div>
+  <div class="grp"><span class="lbl">형광펜</span>
+    <button class="hl" data-hl="yellow" title="노랑"><span style="background:var(--hl-yellow)"></span></button>
+    <button class="hl" data-hl="green" title="연두"><span style="background:var(--hl-green)"></span></button>
+    <button class="hl" data-hl="pink" title="분홍"><span style="background:var(--hl-pink)"></span></button>
+    <button class="hl" data-hl="blue" title="하늘"><span style="background:var(--hl-blue)"></span></button>
+  </div>
+  <div class="sep"></div>
+  <div class="grp">
+    <button data-cmd="bold" title="굵게"><b>B</b></button>
+    <button data-cmd="underline" title="밑줄"><u>U</u></button>
+    <button data-cmd="clear" title="꾸밈 지우기"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6.5 13.5h7M3 10l6-6.5 4 4-5.5 6H5.5z"/><path d="M6.5 6.5l4 4"/></svg></button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const cards = new Map();          // id -> record
+  const state = { kind: 's', grade: '', q: '', view: 'cards' };
+  let db = null, col = null, local = false;
+  const $ = s => document.querySelector(s);
+  const listEl = $('#list'), saveEl = $('#save');
+
+  const newId = () => 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  const blank = (kind, question = '') => ({ id: newId(), kind, grade: kind === 's' || kind === 'c' ? (state.grade || '') : '', subject: '', question, related: '', content: '', summary: '', keywords: '', created: Date.now(), draft: true });
+  const COMMON = ['우리 학과에 지원한 동기는 무엇인가요?', '입학 후 어떤 공부를 하고 싶나요?', '본인의 장점은 무엇인가요?', '본인의 단점과 그것을 고치려고 한 노력은?', '마지막으로 하고 싶은 말이 있나요?'];
+  const isCard = k => k === 's' || k === 'c' || k === 'w' || k === 'q';
+
+  // ---------- storage ----------
+  const LS = 'saenggibu-cards';
+  const lsLoad = () => { try { return JSON.parse(localStorage.getItem(LS) || '[]'); } catch { return []; } };
+  const lsSave = () => { try { localStorage.setItem(LS, JSON.stringify([...cards.values()].filter(c => !c.draft))); } catch {} };
+
+  const chains = new Map(), timers = new Map();
+  function body(c) { const { id, draft, ...rest } = c; return rest; }
+  function queueSave(c) {
+    if (c.draft && c.kind === 'q') { c.draft = false; [...cards.values()].filter(x => x.kind === 'q' && x.draft && x !== c).forEach(x => queueSave(x)); }
+    c.draft = false;
+    saveEl.textContent = '저장 중…';
+    clearTimeout(timers.get(c.id));
+    timers.set(c.id, setTimeout(() => {
+      if (local) { lsSave(); saveEl.textContent = '이 브라우저에 저장됨'; return; }
+      const prev = chains.get(c.id) || Promise.resolve();
+      const next = prev.then(() => col.doc(c.id).set(body(c)))
+        .then(() => { saveEl.textContent = '저장됨'; })
+        .catch(e => { saveEl.textContent = e && e.code === 'quota_exceeded' ? '저장 공간이 가득 찼어요. 안 쓰는 카드를 지워 주세요.' : '저장하지 못했어요. 잠시 후 다시 입력해 보세요.'; });
+      chains.set(c.id, next);
+    }, 700));
+  }
+  function dropDoc(id) {
+    clearTimeout(timers.get(id)); timers.delete(id);
+    if (local) { lsSave(); return; }
+    if (!col) return;
+    const prev = chains.get(id) || Promise.resolve();
+    chains.set(id, prev.then(() => col.doc(id).delete()).catch(() => { saveEl.textContent = '삭제하지 못했어요'; }));
+  }
+
+  // ---------- undo ----------
+  const undoStack = [], editSess = new Map();
+  const clone = c => JSON.parse(JSON.stringify(c));
+  function pushUndo(label, items) {
+    undoStack.push({ label, items: items.map(c => ('before' in c) ? c : { id: c.id, before: clone(c) }) });
+    if (undoStack.length > 80) undoStack.shift();
+    $('#undo').disabled = false;
+  }
+  function noteEdit(c, f) {
+    const k = c.id + '|' + f, now = Date.now(), last = editSess.get(k);
+    if (!last || now - last > 1500) pushUndo('수정', [c]);
+    editSess.set(k, now);
+  }
+  function undo() {
+    const e = undoStack.pop(); $('#undo').disabled = !undoStack.length;
+    if (!e) return;
+    for (const { id, before } of e.items) {
+      if (!before) { cards.delete(id); dropDoc(id); continue; }
+      const c = clone(before); cards.set(id, c);
+      if (c.draft) dropDoc(id); else queueSave(c);
+    }
+    editSess.clear(); render(); toast(`되돌렸어요 · ${e.label}`);
+  }
+  $('#undo').addEventListener('click', undo);
+  document.addEventListener('keydown', e => {
+    if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey || e.key.toLowerCase() !== 'z') return;
+    const a = document.activeElement;
+    if (a && (a.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))) return; // 입력칸 안에서는 브라우저 기본 되돌리기
+    e.preventDefault(); undo();
+  });
+
+  // ---------- toast ----------
+  let toastTimer = null;
+  function toast(msg, withUndo = false) {
+    $('#toastMsg').textContent = msg; $('#toastUndo').hidden = !withUndo; $('#toast').hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('#toast').hidden = true; }, withUndo ? 6000 : 2500);
+  }
+  $('#toastUndo').addEventListener('click', () => { $('#toast').hidden = true; undo(); });
+
+  // ---------- trash ----------
+  function trash(c) {
+    pushUndo('삭제', [c]);
+    if (c.draft) { cards.delete(c.id); render(); toast('카드를 지웠어요', true); return; }
+    c.trashed = Date.now(); queueSave(c); render(); toast('휴지통으로 옮겼어요', true);
+  }
+  function restore(c) { pushUndo('복원', [c]); delete c.trashed; queueSave(c); render(); toast('복원했어요'); }
+  function destroy(list) { pushUndo('영구 삭제', list); list.forEach(c => { cards.delete(c.id); dropDoc(c.id); }); render(); toast(list.length > 1 ? `${list.length}개를 영구 삭제했어요` : '영구 삭제했어요', true); }
+  const KIND = { s: '교과 세특', c: '창체', w: '약점 질문', q: '공통 질문' };
+  function renderTrash() {
+    const t = [...cards.values()].filter(c => c.trashed).sort((a, b) => b.trashed - a.trashed);
+    const day = ms => { const d = new Date(ms); return `${d.getMonth() + 1}월 ${d.getDate()}일 ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
+    listEl.innerHTML = `<div class="trash-head"><div><h2>휴지통</h2><p>지운 카드가 여기 모여요. 복원하면 원래 탭으로 돌아가요.</p></div>
+      ${t.length ? '<button class="btn danger" type="button" id="emptyTrash">휴지통 비우기</button>' : ''}</div>`
+      + (t.length ? t.map(c => {
+        const ttl = isQA(c.kind) ? (c.question || '(질문 없음)') : `${c.grade ? c.grade + '학년 ' : ''}${c.subject || '(이름 없음)'}`;
+        return `<div class="trow" data-id="${c.id}"><span class="meta">${KIND[c.kind] || ''} · ${day(c.trashed)}에 삭제</span>
+          <span class="ttl">${esc(ttl)}</span><span class="pv">${esc(toText(c.content).trim().slice(0, 120)) || '내용 없음'}</span>
+          <span class="acts"><button class="btn" type="button" data-act="restore">복원</button><button class="btn danger" type="button" data-act="destroy">영구 삭제</button></span></div>`;
+      }).join('') : '<p class="empty">휴지통이 비어 있어요.</p>');
+  }
+  function arm(btn, label, fn) {
+    if (btn.classList.contains('arm')) { fn(); return; }
+    const old = btn.textContent; btn.classList.add('arm'); btn.textContent = label;
+    setTimeout(() => { if (btn.isConnected) { btn.classList.remove('arm'); btn.textContent = old; } }, 3000);
+  }
+  $('#trashBtn').addEventListener('click', () => { state.view = state.view === 'trash' ? 'cards' : 'trash'; if (state.view === 'cards') ensureDraft(); render(); });
+  listEl.addEventListener('click', e => {
+    if (state.view !== 'trash') return;
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.id === 'emptyTrash') { arm(b, '정말 모두 삭제', () => destroy([...cards.values()].filter(c => c.trashed))); return; }
+    const c = cards.get(b.closest('.trow')?.dataset.id); if (!c) return;
+    if (b.dataset.act === 'restore') restore(c);
+    if (b.dataset.act === 'destroy') arm(b, '정말 삭제', () => destroy([c]));
+  });
+
+  // ---------- drag to reorder ----------
+  let drag = null;
+  function commitOrder(id) {
+    const ids = [...listEl.querySelectorAll('.card')].map(x => x.dataset.id), i = ids.indexOf(id);
+    const c = cards.get(id), prev = cards.get(ids[i - 1]), next = cards.get(ids[i + 1]);
+    const kp = prev && sortKey(prev), kn = next && sortKey(next);
+    const order = prev && next ? (kp + kn) / 2 : prev ? kp + 1e5 : next ? kn - 1e5 : sortKey(c);
+    if (order === sortKey(c)) return false;
+    pushUndo('순서 변경', [c]); c.order = order; queueSave(c); return true;
+  }
+  document.addEventListener('pointerdown', e => {
+    const h = e.target.closest && e.target.closest('.drag'); if (!h || !listEl.contains(h) || e.button > 0) return;
+    e.preventDefault();
+    const id0 = h.closest('.card').dataset.id;
+    document.activeElement && document.activeElement.blur && document.activeElement.blur();
+    render();                                   // 접힌 제목을 최신 내용으로
+    const el = listEl.querySelector(`.card[data-id="${id0}"]`); if (!el) return;
+    drag = { el, id: id0, before: [...listEl.querySelectorAll('.card')].map(x => x.dataset.id).join() };
+    listEl.classList.add('compact'); el.classList.add('dragging'); document.body.classList.add('is-dragging');
+    const r = el.getBoundingClientRect(); window.scrollBy(0, r.top - (e.clientY - 22));
+  });
+  document.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const y = e.clientY;
+    if (y < 80) window.scrollBy(0, -14); else if (y > innerHeight - 80) window.scrollBy(0, 14);
+    const others = [...listEl.querySelectorAll('.card')].filter(x => x !== drag.el);
+    const before = others.find(o => { const r = o.getBoundingClientRect(); return y < r.top + r.height / 2; });
+    if (before) { if (drag.el.nextElementSibling !== before) listEl.insertBefore(drag.el, before); }
+    else if (others.length) { const last = others.at(-1); if (last.nextElementSibling !== drag.el) last.after(drag.el); }
+  });
+  function endDrag() {
+    if (!drag) return;
+    const { id, before } = drag; drag = null;
+    document.body.classList.remove('is-dragging');
+    const changed = [...listEl.querySelectorAll('.card')].map(x => x.dataset.id).join() !== before && commitOrder(id);
+    listEl.classList.remove('compact'); render();
+    const el = listEl.querySelector(`.card[data-id="${id}"]`);
+    if (el) { el.scrollIntoView({ block: 'center' }); if (changed) toast('순서를 바꿨어요', true); }
+  }
+  document.addEventListener('pointerup', endDrag);
+  document.addEventListener('pointercancel', endDrag);
+  listEl.addEventListener('keydown', e => {
+    const h = e.target.closest('.drag'); if (!h || (e.key !== 'ArrowUp' && e.key !== 'ArrowDown')) return;
+    e.preventDefault();
+    const el = h.closest('.card'), sib = e.key === 'ArrowUp' ? el.previousElementSibling : el.nextElementSibling;
+    if (!sib || !sib.classList.contains('card')) return;
+    e.key === 'ArrowUp' ? sib.before(el) : sib.after(el);
+    const id = el.dataset.id;
+    if (commitOrder(id)) { render(); listEl.querySelector(`.card[data-id="${id}"] .drag`)?.focus(); }
+  });
+
+  // ---------- print ----------
+  function printDoc(o, auto) {
+    const groups = [['s', '교과 세특'], ['c', '창의적 체험활동'], ['w', '약점 질문'], ['q', '공통 질문']].filter(([k]) => o.kinds.includes(k));
+    const body = (v) => o.color ? clean(v) : esc(toText(v)).replace(/\n/g, '<br>');
+    const items = k => [...cards.values()].filter(c => c.kind === k && !c.trashed && !c.draft && (isQA(k) || !o.grade || String(c.grade) === o.grade)).sort((a, b) => sortKey(a) - sortKey(b));
+    const set = cards.get('settings');
+    const now = new Date(), stamp = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}`;
+    const dds = ddView().filter(x => !x.past);
+    const secs = groups.map(([k, name]) => {
+      const list = items(k); if (!list.length) return '';
+      const cardsHTML = list.map(c => {
+        if (isQA(k)) {
+          const sp = speak(c);
+          return `<section class="qa"><div class="q"><span>Q.</span>${esc(c.question)}</div>${c.related ? `<div class="rel">관련: ${esc(c.related)}</div>` : ''}<div class="a">${body(c.content) || '<span class="none">답변 없음</span>'}</div>${sp.n ? `<div class="t">말하면 약 ${sp.t} · ${sp.n}자</div>` : ''}</section>`;
+        }
+        const an = o.an && (toText(c.summary).trim() || (c.keywords || '').trim());
+        return `<table class="rec"><colgroup><col style="width:13mm"><col style="width:30mm"><col></colgroup>
+          <tr><th>학년</th><th>${k === 's' ? '과목' : '영역'}</th><th>${k === 's' ? '세특 내용' : '활동 내용'}</th></tr>
+          <tr><td class="c">${esc(c.grade)}</td><td class="c b">${esc(c.subject)}</td><td>${body(c.content)}</td></tr>
+          ${an ? `<tr class="an"><td colspan="3"><div class="lab">분석</div>${body(c.summary)}${c.keywords ? `<div class="kw">키워드 · ${esc(c.keywords)}</div>` : ''}</td></tr>` : ''}</table>`;
+      }).join('');
+      return { k, html: `<h2>${name} <small>${list.length}</small></h2>${cardsHTML}` };
+    }).filter(Boolean);
+    const part = (title, ks) => { const h = secs.filter(x => ks.includes(x.k)).map(x => x.html).join(''); return h ? `<div class="part">${title}</div>${h}` : ''; };
+    const secsHTML = part('생기부 분석', ['s', 'c']) + part('면접 질문 대비', ['w', 'q']);
+    const S = '<' + 'script>', SE = '<' + '/script>';
+    return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>주여니의 면접 준비 노트</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@400;600&display=swap">
+<style>
+@page{size:A4;margin:14mm 13mm 16mm}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:"IBM Plex Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:#18212C;font-size:10pt;line-height:1.65;background:#fff}
+.page{max-width:184mm;margin:0 auto;padding:0 0 10mm}
+.top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #18212C;padding-bottom:3mm;margin-bottom:6mm}
+h1{font-family:"Gowun Batang",serif;font-size:20pt;margin:0;line-height:1.2}
+.top .m{font-size:9pt;color:#5B6878;text-align:right}
+.top .m b{font-family:"Gowun Batang",serif;color:#1F5F8B;font-size:13pt}
+h2{font-family:"Gowun Batang",serif;font-size:13pt;margin:8mm 0 3mm;padding-left:3mm;border-left:3px solid #1F5F8B;break-after:avoid}
+.part{font-size:9pt;font-weight:600;letter-spacing:.12em;color:#fff;background:#18212C;display:inline-block;padding:1mm 3mm;border-radius:1mm;margin:9mm 0 0;break-after:avoid}
+.part:first-of-type{margin-top:2mm}
+.part+h2{margin-top:3mm}
+h2 small{font-family:"IBM Plex Sans KR",sans-serif;font-size:9pt;color:#8D99A7;font-weight:400}
+table.rec{width:100%;border-collapse:collapse;margin:0 0 4mm;border:1.2px solid #26313D;table-layout:fixed}
+.rec th{background:#EEF2F5;font-size:8.5pt;font-weight:600;color:#5B6878;text-align:left;padding:1.6mm 2.5mm;border-bottom:1px solid #C9D1DA;border-left:1px solid #C9D1DA}
+.rec th:first-child{border-left:0}
+.rec td{vertical-align:top;padding:2.5mm;border-left:1px solid #C9D1DA;word-break:keep-all;overflow-wrap:anywhere}
+.rec td:first-child{border-left:0}
+.rec td.c{text-align:center;vertical-align:middle}
+.rec td.b{font-weight:600}
+.rec tr.an td{border-top:1px dashed #C9D1DA;background:#F5F8FB}
+.rec tr{break-inside:avoid}
+.lab{font-size:8pt;font-weight:600;color:#1F5F8B;letter-spacing:.04em;margin-bottom:1mm}
+.kw{margin-top:1.5mm;font-size:8.5pt;color:#5B6878}
+.qa{border:1.2px solid #26313D;margin:0 0 4mm;break-inside:avoid}
+.qa .q{font-family:"Gowun Batang",serif;font-size:11.5pt;padding:2.5mm 3mm;border-bottom:1px solid #C9D1DA;display:flex;gap:2mm}
+.qa .q span{color:#1F5F8B}
+.qa .rel{font-size:8.5pt;color:#5B6878;padding:1.2mm 3mm;border-bottom:1px solid #C9D1DA}
+.qa .a{padding:2.5mm 3mm}
+.qa .t{font-size:8.5pt;color:#5B6878;padding:1.2mm 3mm;background:#F5F8FB;border-top:1px dashed #C9D1DA}
+.none{color:#8D99A7}
+[data-fc=red]{color:#C62828}[data-fc=blue]{color:#1565C0}[data-fc=green]{color:#2E7D32}[data-fc=purple]{color:#7B1FA2}[data-fc=orange]{color:#D9480F}
+[data-hl]{color:#18212C;border-radius:1px;padding:0 .5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+[data-hl=yellow]{background:#FFEF8A}[data-hl=green]{background:#C6F0C2}[data-hl=pink]{background:#FFCFE1}[data-hl=blue]{background:#CBE5FF}
+.hint{position:sticky;top:0;background:#1F5F8B;color:#fff;padding:10px 16px;font-size:14px;display:flex;justify-content:center;gap:12px;align-items:center}
+.hint button{font:inherit;font-weight:600;background:#fff;color:#1F5F8B;border:0;border-radius:6px;padding:5px 14px;cursor:pointer}
+.empty{color:#8D99A7;text-align:center;padding:20mm 0}
+@media print{.hint{display:none}}
+@media screen{body{background:#E9EDF1}.page{background:#fff;padding:14mm 13mm;margin:16px auto;box-shadow:0 2px 12px rgba(0,0,0,.12);max-width:210mm}}
+</style></head><body>
+${auto ? `<div class="hint">인쇄 창에서 'PDF로 저장'을 고르면 PDF 파일로도 만들 수 있어요. <button onclick="print()">인쇄하기</button></div>` : ''}
+<div class="page"><div class="top"><h1>주여니의 면접 준비 노트</h1><div class="m">${dds.length ? dds.map(x => `${esc(x.name)} <b>${x.label}</b>`).join(' · ') + '<br>' : ''}${stamp} 인쇄${o.grade ? ` · ${o.grade}학년` : ''}</div></div>
+${secsHTML || '<p class="empty">인쇄할 카드가 없어요.</p>'}</div>
+${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${SE}` : ''}
+</body></html>`;
+  }
+  function openPrint() {
+    for (const k of ['s', 'c', 'w', 'q']) $('#pn-' + k).textContent = [...cards.values()].filter(c => c.kind === k && !c.trashed && !c.draft).length + '개';
+    $('#pnote').textContent = ''; $('#printSheet').hidden = false; $('#pgo').focus();
+  }
+  $('#printBtn').addEventListener('click', openPrint);
+  $('#pcancel').addEventListener('click', () => { $('#printSheet').hidden = true; });
+  $('#printSheet').addEventListener('click', e => { if (e.target.id === 'printSheet') $('#printSheet').hidden = true; });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#printSheet').hidden) $('#printSheet').hidden = true; });
+  let dlNs;
+  $('#pgo').addEventListener('click', async () => {
+    const o = { kinds: ['s', 'c', 'w', 'q'].filter(k => $('#pk-' + k).checked), grade: document.querySelector('input[name="pg"]:checked').value, an: $('#p-an').checked, color: $('#p-color').checked };
+    if (!o.kinds.length) { $('#pnote').textContent = '인쇄할 부분을 하나 이상 골라 주세요.'; return; }
+    {                               // 바로 인쇄 창
+      const f = document.createElement('iframe');
+      f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0';
+      f.srcdoc = printDoc(o, false); document.body.append(f);
+      f.onload = () => { setTimeout(() => { f.contentWindow.focus(); f.contentWindow.print(); }, 300); setTimeout(() => f.remove(), 60000); };
+      $('#printSheet').hidden = true; return;
+    }
+    $('#pnote').textContent = '파일을 만드는 중…';
+    if (dlNs === undefined) { try { dlNs = await window.claude.use('downloads'); } catch { dlNs = null; } }
+    if (!dlNs) { $('#pnote').textContent = '이 화면에서는 파일을 받을 수 없어요. HTML 파일 버전에서 인쇄해 주세요.'; return; }
+    try {
+      await dlNs.save({ filename: '주여니의_면접준비노트_인쇄용.html', data: printDoc(o, true) });
+      $('#pnote').textContent = '받은 파일을 열면 인쇄 창이 바로 떠요.';
+    } catch (err) {
+      $('#pnote').textContent = err && err.code === 'declined' ? '파일 받기를 취소했어요.' : err && err.code === 'rate_limited' ? '잠시 후 다시 눌러 주세요.' : '파일을 만들지 못했어요.';
+    }
+  });
+
+  // ---------- rich text ----------
+  const FC = ['red', 'blue', 'green', 'purple', 'orange'], HL = ['yellow', 'green', 'pink', 'blue'];
+  const FCHEX = { '': '#fe0000', red: '#fe0001', blue: '#fe0002', green: '#fe0003', purple: '#fe0004', orange: '#fe0005' };
+  const HLHEX = { '': '#fd0000', yellow: '#fd0001', green: '#fd0002', pink: '#fd0003', blue: '#fd0004' };
+  const rgbKey = h => `rgb(${parseInt(h.slice(1, 3), 16)}, ${parseInt(h.slice(3, 5), 16)}, ${parseInt(h.slice(5, 7), 16)})`;
+  const FCBY = {}, HLBY = {};
+  for (const [k, h] of Object.entries(FCHEX)) { FCBY[rgbKey(h)] = k; FCBY[h] = k; }
+  for (const [k, h] of Object.entries(HLHEX)) { HLBY[rgbKey(h)] = k; HLBY[h] = k; }
+  const KEEP = new Set(['B', 'STRONG', 'U', 'I', 'EM', 'BR', 'DIV', 'P', 'SPAN']);
+  function sanitizeNode(root) {
+    [...root.querySelectorAll('*')].reverse().forEach(n => {
+      if (n.tagName === 'FONT' || !KEEP.has(n.tagName)) { n.replaceWith(...n.childNodes); return; }
+      const fc = n.getAttribute('data-fc'), hl = n.getAttribute('data-hl');
+      [...n.attributes].forEach(a => n.removeAttribute(a.name));
+      if (FC.includes(fc)) n.setAttribute('data-fc', fc);
+      if (HL.includes(hl)) n.setAttribute('data-hl', hl);
+      if (n.tagName === 'SPAN' && !n.attributes.length) n.replaceWith(...n.childNodes);
+    });
+    return root;
+  }
+  function clean(v) {
+    v = String(v || '');
+    if (!/<[a-z]/i.test(v)) return esc(v).replace(/\n/g, '<br>');
+    const t = document.createElement('template'); t.innerHTML = v;
+    const d = document.createElement('div'); d.append(t.content); return sanitizeNode(d).innerHTML;
+  }
+  function toText(v) {
+    v = String(v || ''); if (!/<[a-z]/i.test(v)) return v;
+    const t = document.createElement('template'); t.innerHTML = v.replace(/<br\s*\/?>/gi, '\n').replace(/<\/(div|p)>/gi, '\n');
+    return t.content.textContent;
+  }
+  // turn the browser's inline colours into our theme-aware markers
+  function normalize(el) {
+    el.querySelectorAll('font[color], [style]').forEach(n => {
+      const col = (n.getAttribute('color') || n.style.color || '').toLowerCase();
+      const bg = (n.style.backgroundColor || '').toLowerCase();
+      const span = document.createElement('span');
+      if (n.getAttribute('data-fc')) span.setAttribute('data-fc', n.getAttribute('data-fc'));
+      if (n.getAttribute('data-hl')) span.setAttribute('data-hl', n.getAttribute('data-hl'));
+      if (col in FCBY) { FCBY[col] ? span.setAttribute('data-fc', FCBY[col]) : span.removeAttribute('data-fc'); }
+      if (bg in HLBY) { HLBY[bg] ? span.setAttribute('data-hl', HLBY[bg]) : span.removeAttribute('data-hl'); }
+      const fw = n.style.fontWeight, td = n.style.textDecorationLine || n.style.textDecoration || '';
+      let inner = span;
+      if (fw === 'bold' || Number(fw) >= 600) { const b = document.createElement('b'); inner.append(b); inner = b; }
+      if (td.includes('underline')) { const u = document.createElement('u'); inner.append(u); inner = u; }
+      inner.append(...n.childNodes);
+      if (n.tagName === 'SPAN' || n.tagName === 'FONT') n.replaceWith(span.attributes.length ? span : span.firstChild && span.childNodes.length === 1 && span.firstChild.nodeType === 1 ? span.firstChild : span);
+      else { n.removeAttribute('style'); n.append(span); }
+    });
+    // an erased span with no markers left is just text
+    el.querySelectorAll('span').forEach(n => { if (!n.attributes.length) n.replaceWith(...n.childNodes); });
+    el.querySelectorAll('[data-fc=""],[data-hl=""]').forEach(n => { n.removeAttribute('data-fc'); n.removeAttribute('data-hl'); });
+  }
+
+  function saveSel(ed) {
+    const s = document.getSelection(); if (!s.rangeCount) return null;
+    const r = s.getRangeAt(0), pre = document.createRange();
+    pre.selectNodeContents(ed); pre.setEnd(r.startContainer, r.startOffset);
+    const a = pre.toString().length; return [a, a + r.toString().length];
+  }
+  function restoreSel(ed, [a, z]) {
+    const w = document.createTreeWalker(ed, 4); let n, i = 0, r = document.createRange(), sa = false;
+    while ((n = w.nextNode())) {
+      const L = n.data.length;
+      if (!sa && a <= i + L) { r.setStart(n, a - i); sa = true; }
+      if (sa && z <= i + L) { r.setEnd(n, z - i); break; }
+      i += L;
+    }
+    if (sa) { const s = document.getSelection(); s.removeAllRanges(); s.addRange(r); }
+  }
+  const tb = document.getElementById('tb');
+  let tbEditor = null;
+  function editorOfSelection() {
+    const sel = document.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) return null;
+    const n = sel.anchorNode, el = (n && (n.nodeType === 1 ? n : n.parentElement));
+    const ed = el && el.closest('.rt');
+    return ed && listEl.contains(ed) ? ed : null;
+  }
+  function placeToolbar() {
+    const ed = editorOfSelection();
+    if (!ed) { tb.hidden = true; tbEditor = null; return; }
+    tbEditor = ed;
+    const r = document.getSelection().getRangeAt(0).getBoundingClientRect();
+    tb.hidden = false;
+    const w = tb.offsetWidth, h = tb.offsetHeight;
+    let x = Math.min(Math.max(16, r.left + r.width / 2 - w / 2), window.innerWidth - w - 16);
+    let y = r.top - h - 10; if (y < 8) y = r.bottom + 10;
+    tb.style.left = x + 'px'; tb.style.top = y + 'px';
+  }
+  document.addEventListener('selectionchange', () => requestAnimationFrame(placeToolbar));
+  window.addEventListener('scroll', () => { if (!tb.hidden) placeToolbar(); }, { passive: true });
+  tb.addEventListener('mousedown', e => e.preventDefault());
+  tb.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || !tbEditor) return;
+    const ed = tbEditor;
+    if (b.classList.contains('fc')) { document.execCommand('styleWithCSS', false, true); document.execCommand('foreColor', false, FCHEX[b.dataset.fc]); }
+    else if (b.classList.contains('hl')) { document.execCommand('styleWithCSS', false, true); document.execCommand('hiliteColor', false, HLHEX[b.dataset.hl]); }
+    else if (b.dataset.cmd === 'clear') { document.execCommand('removeFormat'); document.execCommand('styleWithCSS', false, true); document.execCommand('hiliteColor', false, HLHEX['']); document.execCommand('foreColor', false, FCHEX['']); }
+    else { document.execCommand('styleWithCSS', false, false); document.execCommand(b.dataset.cmd); }
+    const off = saveSel(ed);
+    normalize(ed);
+    if (off) restoreSel(ed, off);
+    const c = cards.get(ed.closest('.card').dataset.id);
+    if (c) { pushUndo('꾸미기', [c]); c[ed.dataset.f] = ed.innerHTML; queueSave(c); }
+  });
+  listEl.addEventListener('paste', e => {
+    const ed = e.target.closest && e.target.closest('.rt'); if (!ed) return;
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+    document.execCommand('insertText', false, text);
+  });
+
+  // ---------- view ----------
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  function grow(t) { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }
+  function countText(c) { const n = [...toText(c.content).replace(/\n/g, '')].length; return { n, over: false, t: `${n}자` }; }
+
+  const isQA = k => k === 'w' || k === 'q';
+  function visible() {
+    const q = state.q.trim().toLowerCase();
+    return [...cards.values()]
+      .filter(c => c.kind === state.kind && !c.trashed)
+      .filter(c => isQA(c.kind) || !state.grade || c.draft && !c.grade || String(c.grade) === state.grade)
+      .filter(c => !q || [c.subject, c.question, c.related, c.keywords, toText(c.summary), toText(c.content)].join(' ').toLowerCase().includes(q))
+      .sort((a, b) => sortKey(a) - sortKey(b));
+  }
+  function sortKey(c) {
+    if (typeof c.order === 'number') return c.order;
+    return isQA(c.kind) ? c.created : (Number(c.grade) || 9) * 1e13 + c.created;
+  }
+  function speak(c) {
+    const n = [...toText(c.content).replace(/\s/g, '')].length;
+    const sec = Math.round(n / 5);            // 1분에 약 300자
+    const t = sec < 60 ? `${sec}초` : `${Math.floor(sec / 60)}분 ${String(sec % 60).padStart(2, '0')}초`;
+    const cls = !n ? '' : sec <= 60 ? 'ok' : sec <= 90 ? 'long' : 'over';
+    const note = !n ? '답변을 쓰면 말하는 시간이 계산돼요' : sec <= 60 ? '적당해요' : sec <= 90 ? '조금 길어요' : '너무 길어요. 90초 안으로 줄여 보세요';
+    return { n, t: n ? t : '0초', html: `<span class="pill ${cls}">말하면 약 ${n ? t : '0초'}</span><span>${n}자 · ${note}</span>` };
+  }
+  let commentsNs = null;
+  const fbBtn = () => commentsNs ? '<button class="fb" type="button">의견</button> ' : '';
+  function qaHTML(c) {
+    const w = c.kind === 'w', sp = speak(c);
+    return `<article class="card qa" data-id="${c.id}">
+      <div class="ctitle"><span class="g">${w ? '약점' : '공통'}</span>${esc(c.question) || '(질문 없음)'}</div>
+      <div class="qhead"><span><button class="drag" type="button" aria-label="끌어서 순서 바꾸기">⠿</button> <span class="tag${w ? ' w' : ''}">${w ? '약점 질문' : '공통 질문'}</span></span><span>${fbBtn()}<button class="del" type="button">삭제</button></span></div>
+      <input class="question" id="subj-${c.id}" data-f="question" value="${esc(c.question)}" placeholder="${w ? '예: 물리학Ⅰ은 전공 관련 과목인데 왜 등급이 낮나요?' : '질문을 적어요'}" aria-label="질문">
+      ${w ? `<div class="related"><span>관련</span><input id="rel-${c.id}" data-f="related" value="${esc(c.related)}" placeholder="예: 2학년 물리학Ⅰ 3등급" aria-label="관련 과목·활동"></div>` : ''}
+      <div class="rt answer" id="content-${c.id}" data-f="content" contenteditable="true" data-ph="${w ? '인정할 부분, 그 뒤에 한 노력, 지금 달라진 점 순서로 적어 보세요' : '내 답변을 적어요. 말하듯이 써 보세요'}" aria-label="답변" role="textbox" aria-multiline="true">${clean(c.content)}</div>
+      <div class="ansfoot">${sp.html}</div>
+    </article>`;
+  }
+
+  function cardHTML(c) {
+    if (isQA(c.kind)) return qaHTML(c);
+    const s = c.kind === 's';
+    const k = countText(c);
+    const areaOpts = ['자율', '동아리', '진로', '봉사'];
+    const second = s
+      ? `<input class="subj" id="subj-${c.id}" data-f="subject" value="${esc(c.subject)}" placeholder="과목명" aria-label="과목">`
+      : `<select class="subj" id="subj-${c.id}" data-f="subject" aria-label="영역"><option value="">영역</option>${areaOpts.map(o => `<option${o === c.subject ? ' selected' : ''}>${o}</option>`).join('')}</select>`;
+    const ttl = toText(c.content).trim().slice(0, 40);
+    return `<article class="card" data-id="${c.id}">
+      <div class="ctitle"><span class="g">${c.grade ? c.grade + '학년' : '학년 –'}</span>${esc(c.subject) || (s ? '(과목 없음)' : '(영역 없음)')}<span class="meta" style="font-weight:400;color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ttl)}</span></div>
+      <div class="h"><span><button class="drag" type="button" aria-label="끌어서 순서 바꾸기">⠿</button> 학년</span></div>
+      <div class="h">${s ? '과목' : '영역'}</div>
+      <div class="h hb"><span>${s ? '세특 내용' : '활동 내용'}</span><span><span class="count${k.over ? ' over' : ''}">${k.t}</span> ${fbBtn()}<button class="del" type="button">삭제</button></span></div>
+      <div class="side">
+        <select class="grade" id="grade-${c.id}" data-f="grade" data-g="${esc(c.grade)}" aria-label="학년">
+          <option value="">–</option>${[1, 2, 3].map(g => `<option value="${g}"${String(c.grade) === String(g) ? ' selected' : ''}>${g}</option>`).join('')}
+        </select>
+      </div>
+      <div class="side">${second}</div>
+      <div class="body">
+        <div class="rt content" id="content-${c.id}" data-f="content" contenteditable="true" data-ph="생기부 원문을 붙여 넣으세요" aria-label="원문" role="textbox" aria-multiline="true">${clean(c.content)}</div>
+        <div class="sumhead">분석</div>
+        <div class="rt summary" id="summary-${c.id}" data-f="summary" contenteditable="true" data-ph="드러나는 역량, 전공 연계, 면접에서 말할 점, 보완할 점" aria-label="분석" role="textbox" aria-multiline="true">${clean(c.summary)}</div>
+        <div class="kwrow"><span>키워드</span><input class="kw" id="kw-${c.id}" data-f="keywords" value="${esc(c.keywords)}" placeholder="예: 트랜지스터, 오차 분석, 전공 연계" aria-label="키워드"></div>
+      </div>
+    </article>`;
+  }
+
+  function render() {
+    $('#trashBtn').setAttribute('aria-pressed', state.view === 'trash');
+    document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', state.view !== 'trash' && x.dataset.kind === state.kind));
+    if (state.view === 'trash') { renderTrash(); counts(); renderDday(); return; }
+    const v = visible();
+    const addLabel = { s: '+ 과목 카드 추가', c: '+ 활동 카드 추가', w: '+ 약점 질문 추가', q: '+ 질문 추가' }[state.kind];
+    $('#chips').hidden = isQA(state.kind);
+    listEl.innerHTML = (v.length ? v.map(cardHTML).join('') : `<p class="empty">${state.q ? '검색 결과가 없어요.' : '아직 카드가 없어요.'}</p>`)
+      + `<button class="add" type="button" id="add">${addLabel}</button>`;
+    counts(); renderDday();
+  }
+  function counts() {
+    const all = [...cards.values()].filter(c => !c.draft && !c.trashed && isCard(c.kind));
+    $('#nT').textContent = [...cards.values()].filter(c => c.trashed).length;
+    $('#nS').textContent = all.filter(c => c.kind === 's').length;
+    $('#nC').textContent = all.filter(c => c.kind === 'c').length;
+    $('#nW').textContent = all.filter(c => c.kind === 'w').length;
+    $('#nQ').textContent = all.filter(c => c.kind === 'q' && toText(c.content).trim()).length;
+  }
+  // ---------- 면접 일정 (여러 대학) ----------
+  function ddList() {
+    const set = cards.get('settings'); if (!set) return [];
+    if (Array.isArray(set.ddays)) return set.ddays;
+    return set.dday ? [{ id: 'd0', name: '면접', date: set.dday }] : [];
+  }
+  function ddView() {
+    const now = new Date(), today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    return ddList().filter(x => x.date).map(x => {
+      const diff = Math.round((Date.parse(x.date) - today) / 864e5);
+      return { name: x.name || '면접', diff, past: diff < 0, label: diff > 0 ? `D-${diff}` : diff === 0 ? 'D-DAY' : `D+${-diff}` };
+    }).sort((a, b) => (a.past - b.past) || (a.past ? b.diff - a.diff : a.diff - b.diff));
+  }
+  const ddPanel = $('#ddPanel'), ddBtn = $('#ddBtn'), ddRows = $('#ddRows');
+  function renderDday() {
+    const v = ddView();
+    ddBtn.innerHTML = v.length
+      ? v.map(x => `<span class="dc${x.past ? ' past' : ''}"><span class="u">${esc(x.name)}</span><b${x.diff === 0 ? ' class="today"' : ''}>${x.label}</b></span>`).join('') + '<span class="ed">편집</span>'
+      : '<span class="ph">+ 면접 일정 추가</span>';
+    if (!ddPanel.hidden && !ddPanel.contains(document.activeElement)) renderRows();
+  }
+  function renderRows() {
+    ddRows.innerHTML = ddList().map(x => `<div class="ddrow" data-id="${esc(x.id)}">
+      <input id="ddn-${esc(x.id)}" data-f="name" value="${esc(x.name)}" placeholder="대학 이름 (예: 서울대)" aria-label="대학 이름">
+      <input id="ddd-${esc(x.id)}" data-f="date" type="date" value="${esc(x.date)}" aria-label="면접 날짜">
+      <button class="x" type="button" aria-label="이 일정 지우기">×</button></div>`).join('');
+  }
+  let ddSess = 0;
+  function mutDd(fn, label, fresh) {
+    const had = cards.get('settings'), now = Date.now();
+    if (fresh || now - ddSess > 1500) pushUndo(label, [had || { id: 'settings', before: null }]);
+    ddSess = fresh ? 0 : now;
+    const set = had || { id: 'settings', kind: 'set', created: 0 };
+    const list = clone(ddList()); fn(list);
+    set.ddays = list; delete set.dday;
+    cards.set('settings', set); queueSave(set); renderDday();
+  }
+  function openDd(open) {
+    ddPanel.hidden = !open; ddBtn.setAttribute('aria-expanded', open);
+    if (!open) return;
+    if (!ddList().length) mutDd(l => l.push({ id: newId(), name: '', date: '' }), '면접 일정', true);
+    renderRows(); ddRows.querySelector('input')?.focus();
+  }
+  ddBtn.addEventListener('click', () => openDd(ddPanel.hidden));
+  $('#ddAdd').addEventListener('click', () => {
+    const id = newId();
+    mutDd(l => l.push({ id, name: '', date: '' }), '면접 일정', true);
+    renderRows(); document.getElementById('ddn-' + id)?.focus();
+  });
+  ddRows.addEventListener('input', e => {
+    const row = e.target.closest('.ddrow'), f = e.target.dataset.f; if (!row || !f) return;
+    const v = e.target.value;
+    mutDd(l => { const x = l.find(y => y.id === row.dataset.id); if (x) x[f] = v; }, '면접 일정');
+  });
+  ddRows.addEventListener('click', e => {
+    const b = e.target.closest('.x'); if (!b) return;
+    const id = b.closest('.ddrow').dataset.id;
+    mutDd(l => { const i = l.findIndex(y => y.id === id); if (i >= 0) l.splice(i, 1); }, '면접 일정 삭제', true);
+    renderRows();
+  });
+  document.addEventListener('pointerdown', e => { if (!ddPanel.hidden && !e.target.closest('.ddwrap')) openDd(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !ddPanel.hidden) { openDd(false); ddBtn.focus(); } });
+
+  // ---------- events ----------
+  listEl.addEventListener('input', e => {
+    const el = e.target, f = el.dataset.f; if (!f) return;
+    const cardEl = el.closest('.card'), c = cards.get(cardEl.dataset.id); if (!c) return;
+    noteEdit(c, f);
+    if (el.classList.contains('rt')) { if (!el.textContent.trim() && !el.querySelector('br + br')) el.innerHTML = ''; c[f] = el.innerHTML; }
+    else c[f] = el.value;
+    if (f === 'grade') el.dataset.g = el.value;
+    if (isQA(c.kind) && f === 'content') cardEl.querySelector('.ansfoot').innerHTML = speak(c).html;
+    else if (f === 'content' || f === 'subject') {
+      const k = countText(c), cnt = cardEl.querySelector('.count');
+      cnt.textContent = k.t; cnt.classList.toggle('over', k.over);
+    }
+    queueSave(c);
+    counts();
+  });
+  listEl.addEventListener('change', e => { if (e.target.dataset.f === 'grade') render(); });
+  listEl.addEventListener('click', e => {
+    if (e.target.id === 'add') {
+      const c = blank(state.kind); cards.set(c.id, c); render();
+      const t = document.getElementById('subj-' + c.id); t && t.focus(); return;
+    }
+    const fb = e.target.closest('.fb');
+    if (fb && commentsNs) { commentsNs.openComposer({ element: fb.closest('.card') }).catch(() => {}); return; }
+    const d = e.target.closest('.del'); if (!d) return;
+    const c = cards.get(d.closest('.card').dataset.id);
+    if (c) trash(c);
+  });
+  document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
+    state.kind = b.dataset.kind; state.view = 'cards';
+    ensureDraft(); render();
+  }));
+  $('#chips').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    state.grade = b.dataset.g;
+    $('#chips').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    render();
+  });
+  $('#q').addEventListener('input', e => { state.q = e.target.value; state.view = 'cards'; render(); });
+
+  function ensureDraft() {
+    if ([...cards.values()].some(c => c.kind === state.kind)) return;
+    if (state.kind === 'q') COMMON.forEach((q, i) => { const c = blank('q', q); c.order = i; c.created += i; cards.set(c.id, c); });
+    else { const c = blank(state.kind); cards.set(c.id, c); }
+  }
+  function prune() {
+    let changed = false;
+    const saved = [...cards.values()].filter(x => !x.draft && !x.trashed);
+    for (const [id, c] of cards) {
+      if (!c.draft || toText(c.content).trim()) continue;
+      const dup = c.kind === 'q' ? saved.some(x => x.kind === 'q' && x.question === c.question) : !c.subject && saved.some(x => x.kind === c.kind);
+      if (dup) { cards.delete(id); changed = true; }
+    }
+    return changed;
+  }
+
+  // ---------- backup ----------
+  $('#exportBtn').addEventListener('click', () => {
+    const data = { app: 'saenggibu-cards', version: 1, exported: new Date().toISOString(), records: [...cards.values()].filter(c => !c.draft).map(c => { const { draft, ...r } = c; return r; }) };
+    const d = new Date(), stamp = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' }));
+    a.download = `면접준비노트_백업_${stamp}.json`; document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    toast('백업 파일을 받았어요');
+  });
+  $('#importBtn').addEventListener('click', () => $('#importFile').click());
+  $('#importFile').addEventListener('change', async e => {
+    const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+    let recs;
+    try { const j = JSON.parse(await f.text()); recs = Array.isArray(j) ? j : j.records; if (!Array.isArray(recs)) throw 0; }
+    catch { toast('백업 파일을 읽지 못했어요'); return; }
+    recs = recs.filter(r => r && typeof r.id === 'string' && (isCard(r.kind) || r.id === 'settings'));
+    if (!recs.length) { toast('불러올 카드가 없어요'); return; }
+    pushUndo('백업 불러오기', recs.map(r => cards.get(r.id) || { id: r.id, before: null }));
+    for (const [id, c] of cards) if (c.draft) cards.delete(id);
+    recs.forEach(r => cards.set(r.id, { ...r, draft: false }));
+    lsSave(); prune(); ensureDraft(); state.view = 'cards'; render();
+    saveEl.textContent = '이 브라우저에 저장됨';
+    toast(`${recs.length}개를 불러왔어요`, true);
+  });
+
+  // ---------- boot ----------
+  function applySnapshot(snap) {
+    const focused = document.activeElement && document.activeElement.closest && document.activeElement.closest('.card');
+    const focusId = focused && focused.dataset.id;
+    let structural = false;
+    snap.docChanges().forEach(ch => {
+      const id = ch.doc.id;
+      if (ch.type === 'removed') { if (cards.has(id)) { cards.delete(id); structural = true; } return; }
+      if (id === focusId || timers.has(id) && cards.get(id) && !cards.get(id).draft && chainsPending(id)) return;
+      const had = cards.has(id);
+      cards.set(id, { id, ...ch.doc.data(), draft: false });
+      structural = true;
+      if (!had) structural = true;
+    });
+    if (prune()) structural = true;
+    if (structural && !focusId && !drag) render();
+    else if (structural) { needRender = true; if (drag) { counts(); return; } counts(); renderDday(); }
+    saveEl.textContent = '저장됨';
+  }
+  const pendingIds = new Set();
+  function chainsPending(id) { return pendingIds.has(id); }
+  let needRender = false;
+  listEl.addEventListener('focusout', () => setTimeout(() => {
+    if (needRender && !(document.activeElement && document.activeElement.closest && document.activeElement.closest('.card'))) { needRender = false; render(); }
+  }, 0));
+
+  ensureDraft(); render();
+  (async () => {
+    db = null;   // 독립 실행: 이 브라우저(localStorage)에 저장
+    if (!db) {
+      local = true;
+      lsLoad().forEach(c => cards.set(c.id, { ...c, draft: false }));
+      prune();
+      ensureDraft(); render();
+      saveEl.textContent = '이 브라우저에 저장돼요';
+      return;
+    }
+    col = db.collection('records');
+    col.onSnapshot(applySnapshot, () => { saveEl.textContent = '연결이 끊겼어요. 새로고침해 주세요.'; });
+    try { commentsNs = await window.claude.use('comments'); } catch { commentsNs = null; }
+    if (commentsNs) { if (document.activeElement && document.activeElement.closest && document.activeElement.closest('.card')) needRender = true; else render(); }
+  })();
+})();
+</script>
+
+</body></html>
