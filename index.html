@@ -102,6 +102,40 @@ h1{font-family:var(--serif);font-size:30px;margin:0;letter-spacing:-.01em;text-w
 .sumhead .extitle::placeholder{color:var(--faint);font-weight:500}
 .sumhead .xdel{font:inherit;font-size:15px;line-height:1;border:0;background:none;color:var(--faint);cursor:pointer;padding:0 4px;border-radius:4px}
 .sumhead .xdel:hover{color:var(--warn)}
+.anbox{background:var(--sum);border-top:1px dashed var(--rule);padding:14px 16px 2px}
+.ap{--c:var(--accent);--ct:var(--accent-tint);margin-bottom:14px}
+.ap-t{--c:var(--warn);--ct:color-mix(in srgb,var(--warn) 12%,var(--paper))}
+.ap-k{--c:var(--g2i);--ct:var(--g2)}
+.ap-x{--c:var(--g3i);--ct:var(--g3)}
+.aph{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--c);margin:0 2px 7px}
+.aph::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--c)}
+.apn{font-size:11px;font-weight:700;min-width:20px;text-align:center;padding:1px 7px;border-radius:999px;background:var(--ct);color:var(--c)}
+.apc{background:var(--paper);border:1px solid var(--rule);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(22,32,45,.05)}
+.apr{display:grid;grid-template-columns:42px minmax(0,1fr) minmax(0,1.3fr) 30px;border-top:1px solid var(--rule)}
+.apr.head{border-top:0;background:var(--ct);font-size:11.5px;font-weight:700;color:var(--c);letter-spacing:.03em}
+.apr.head span{padding:6px 12px}
+.apr .no{padding-top:10px;text-align:center;font-size:11.5px;font-weight:700;color:var(--c)}
+.apr .c1,.apr .c2{min-width:0;padding:9px 12px;min-height:42px;font-size:14.5px;line-height:1.65}
+.apr .c2{border-left:1px solid var(--rule)}
+.apr .c1{font-weight:600}
+.ap-t .apr .c1{font-weight:600;color:var(--ink)}
+.apr .cell{width:100%;font:inherit;font-weight:600;color:var(--ink);background:transparent;border:0}
+.apr .cell::placeholder{color:var(--faint);font-weight:400}
+.apr:not(.head):focus-within{background:color-mix(in srgb,var(--ct) 35%,var(--paper))}
+.apr .rdel{align-self:start;margin-top:7px;font:inherit;font-size:16px;line-height:1;border:0;background:none;color:var(--faint);cursor:pointer;padding:3px 6px;border-radius:6px;opacity:0;transition:opacity .15s}
+.apr:hover .rdel,.apr:focus-within .rdel,.rdel:focus-visible{opacity:1}
+.apr .rdel:hover{color:var(--warn);background:var(--ct)}
+@media (hover:none){.apr .rdel{opacity:.6}}
+.ap .addsec{display:block;width:100%;text-align:left;font:inherit;font-size:13px;font-weight:600;color:var(--c);background:none;border:0;border-top:1px dashed var(--rule);padding:9px 14px;cursor:pointer}
+.ap .addsec:hover{background:var(--ct)}
+@media (max-width:600px){
+  .apr{grid-template-columns:34px minmax(0,1fr) 30px}
+  .apr.head{display:none}
+  .apr .c1{grid-column:2}
+  .apr .c2{grid-column:2;grid-row:2;border-left:0;border-top:1px dashed var(--rule)}
+  .apr .rdel{grid-column:3;grid-row:1}
+  .apr .no{grid-row:1/3}
+}
 .anwrap{background:var(--sum);padding:6px 16px 10px}
 .antbl{width:100%;border-collapse:collapse;table-layout:fixed;background:var(--paper);border:1px solid var(--rule);border-radius:6px}
 .antbl th{font-size:12px;font-weight:600;color:var(--soft);text-align:left;padding:6px 10px;border-bottom:1px solid var(--rule);background:var(--sum)}
@@ -141,6 +175,8 @@ textarea:focus-visible,.rt:focus-visible,.kw:focus-visible,.subj:focus-visible{o
 .qa .question::placeholder{color:var(--faint);font-weight:400}
 .qa .related{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--rule);font-size:12px;color:var(--faint)}
 .qa .related input{flex:1;min-width:0;font:inherit;font-size:14px;border:0;background:transparent;color:var(--ink)}
+.qa .related input.page{flex:0 0 56px;text-align:center;border-bottom:1px solid var(--rule)}
+.qa .related .sep2{width:1px;height:16px;background:var(--rule);margin:0 4px}
 .qa .answer{min-height:110px}
 .qa .ansfoot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:8px 16px 12px;border-top:1px dashed var(--rule);background:var(--sum);font-size:13px;color:var(--soft);font-variant-numeric:tabular-nums}
 .pill{font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--accent-tint);color:var(--accent)}
@@ -248,7 +284,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
           <button class="btn" id="ddAdd" type="button">+ 대학 추가</button>
         </div>
       </div>
-      <div class="stat"><span class="grp"><span class="gl">생기부 분석</span><span>세특 <b id="nS">0</b></span><span>창체 <b id="nC">0</b></span></span><span class="grp"><span class="gl">면접 대비</span><span>약점 <b id="nW">0</b></span><span>공통 <b id="nQ">0</b></span></span></div>
+      <div class="stat"><span class="grp"><span class="gl">생기부 분석</span><span>세특 <b id="nS">0</b></span><span>창체 <b id="nC">0</b></span></span><span class="grp"><span class="gl">면접 대비</span><span>생기부 <b id="nW">0</b></span><span>공통 <b id="nQ">0</b></span></span></div>
     </div>
   </header>
 
@@ -262,7 +298,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       </div>
       <div class="tg iv"><span class="tgl">면접 질문 대비</span>
         <div class="tabs" role="tablist" aria-label="면접 질문 대비">
-          <button id="tab-w" role="tab" aria-selected="false" data-kind="w">약점 질문</button>
+          <button id="tab-w" role="tab" aria-selected="false" data-kind="w">생기부 질문</button>
           <button id="tab-q" role="tab" aria-selected="false" data-kind="q">공통 질문</button>
         </div>
       </div>
@@ -273,7 +309,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       <button aria-pressed="false" data-g="2">2학년</button>
       <button aria-pressed="false" data-g="3">3학년</button>
     </div>
-    <input id="q" class="search" type="search" placeholder="과목·키워드 검색">
+    <input id="q" class="search" type="search" placeholder="과목·내용 검색">
     <div class="tools">
       <button class="tool" id="undo" type="button" disabled title="되돌리기 (Ctrl+Z)"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 3.5 2.5 6.5l3 3"/><path d="M2.5 6.5h7a4 4 0 0 1 0 8H7"/></svg>되돌리기</button>
       <button class="tool" id="trashBtn" type="button" aria-pressed="false"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg>휴지통 <span class="n" id="nT">0</span></button>
@@ -288,8 +324,8 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       <li><b>과목 카드 추가</b>를 누르고 학년 동그라미에서 학년을, 과목 칸에 과목명을 적어요. 창체는 위의 <b>창체</b> 탭에서 영역을 골라요.</li>
       <li><b>세특 내용</b> 칸에 생기부 원문을 붙여 넣어요. 오른쪽 위에 글자 수가 나와요.</li>
       <li>중요한 부분을 <b>드래그</b>하면 도구 막대가 떠요. 글자색, <mark>형광펜</mark>, 굵게, 밑줄을 바꿀 수 있고 <b>지우개</b>로 되돌려요.</li>
-      <li>원문 아래에 <b>꼬리 질문</b> 표에는 질문과 답변을, <b>개념 뜻</b> 표에는 개념과 뜻을 나눠 적어요. <b>기타</b> 표는 종류 이름을 직접 정해서 써요. 표마다 <b>+ 추가</b>로 줄을 늘리고 <b>×</b>로 지워요. <b>키워드</b>는 쉼표로 적으면 검색창에서 찾을 수 있어요.</li>
-      <li><b>약점 질문</b> 탭에는 면접관이 물어볼 만한 약한 부분(낮은 등급, 적은 활동)을 질문으로 적고 답변을 준비해요.</li>
+      <li>원문 아래에 <b>꼬리 질문</b> 표에는 질문과 답변을, <b>개념 뜻</b> 표에는 개념과 뜻을 나눠 적어요. <b>기타</b> 표는 종류 이름을 직접 정해서 써요. 표마다 <b>+ 추가</b>로 줄을 늘리고 <b>×</b>로 지워요.</li>
+      <li><b>생기부 질문</b> 탭에는 생기부 내용으로 나올 만한 질문을 적고, <b>과목</b>과 <b>생기부 쪽수</b>를 함께 적어 답변을 준비해요.</li>
       <li><b>공통 질문</b> 탭에는 지원동기 같은 기본 질문이 들어 있어요. 답변을 쓰면 말하는 시간이 자동으로 계산돼요(1분에 약 300자 기준).</li>
       <li>오른쪽 위 <b>면접 일정</b>을 누르면 대학별로 이름과 날짜를 여러 개 넣을 수 있고, 가까운 순서대로 D-day가 떠요.</li>
       <li>카드 왼쪽 위 <b>⠿</b>를 잡고 끌면 순서를 바꿀 수 있어요. 끄는 동안에는 카드가 한 줄로 접혀서 옮기기 쉬워요. 키보드로는 ⠿를 누른 뒤 ↑↓ 키를 써요.</li>
@@ -312,7 +348,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       <label><input type="checkbox" id="pk-c" value="c" checked> 창의적 체험활동 <span class="n" id="pn-c"></span></label>
     </fieldset>
     <fieldset><legend>면접 질문 대비</legend>
-      <label><input type="checkbox" id="pk-w" value="w" checked> 약점 질문 <span class="n" id="pn-w"></span></label>
+      <label><input type="checkbox" id="pk-w" value="w" checked> 생기부 질문 <span class="n" id="pn-w"></span></label>
       <label><input type="checkbox" id="pk-q" value="q" checked> 공통 질문 <span class="n" id="pn-q"></span></label>
     </fieldset>
     <fieldset><legend>학년 (세특·창체)</legend>
@@ -324,7 +360,7 @@ body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
       </div>
     </fieldset>
     <fieldset><legend>담을 내용</legend>
-      <label><input type="checkbox" id="p-an" checked> 꼬리 질문·개념·기타 표, 키워드</label>
+      <label><input type="checkbox" id="p-an" checked> 꼬리 질문·개념·기타 표</label>
       <label><input type="checkbox" id="p-color" checked> 글자색·형광펜</label>
     </fieldset>
     <p class="note" id="pnote"></p>
@@ -460,7 +496,7 @@ const NOTE_KEY = "dI78rfvu2axN71anadkRucyz0vjAzNwK";
   }
   function restore(c) { pushUndo('복원', [c]); delete c.trashed; queueSave(c); render(); toast('복원했어요'); }
   function destroy(list) { pushUndo('영구 삭제', list); list.forEach(c => { cards.delete(c.id); dropDoc(c.id); }); render(); toast(list.length > 1 ? `${list.length}개를 영구 삭제했어요` : '영구 삭제했어요', true); }
-  const KIND = { s: '교과 세특', c: '창체', w: '약점 질문', q: '공통 질문' };
+  const KIND = { s: '교과 세특', c: '창체', w: '생기부 질문', q: '공통 질문' };
   function renderTrash() {
     const t = [...cards.values()].filter(c => c.trashed).sort((a, b) => b.trashed - a.trashed);
     const day = ms => { const d = new Date(ms); return `${d.getMonth() + 1}월 ${d.getDate()}일 ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
@@ -541,7 +577,7 @@ const NOTE_KEY = "dI78rfvu2axN71anadkRucyz0vjAzNwK";
 
   // ---------- print ----------
   function printDoc(o, auto) {
-    const groups = [['s', '교과 세특'], ['c', '창의적 체험활동'], ['w', '약점 질문'], ['q', '공통 질문']].filter(([k]) => o.kinds.includes(k));
+    const groups = [['s', '교과 세특'], ['c', '창의적 체험활동'], ['w', '생기부 질문'], ['q', '공통 질문']].filter(([k]) => o.kinds.includes(k));
     const body = (v) => o.color ? clean(v) : esc(toText(v)).replace(/\n/g, '<br>');
     const items = k => [...cards.values()].filter(c => c.kind === k && !c.trashed && !c.draft && (isQA(k) || !o.grade || String(c.grade) === o.grade)).sort((a, b) => sortKey(a) - sortKey(b));
     const set = cards.get('settings');
@@ -552,18 +588,18 @@ const NOTE_KEY = "dI78rfvu2axN71anadkRucyz0vjAzNwK";
       const cardsHTML = list.map(c => {
         if (isQA(k)) {
           const sp = speak(c);
-          return `<section class="qa"><div class="q"><span>Q.</span>${esc(c.question)}</div>${c.related ? `<div class="rel">관련: ${esc(c.related)}</div>` : ''}<div class="a">${body(c.content) || '<span class="none">답변 없음</span>'}</div>${sp.n ? `<div class="t">말하면 약 ${sp.t} · ${sp.n}자</div>` : ''}</section>`;
+          return `<section class="qa"><div class="q"><span>Q.</span>${esc(c.question)}</div>${(c.rsubj ?? c.related) || c.rpage ? `<div class="rel">${[(c.rsubj ?? c.related) ? '과목: ' + esc(c.rsubj ?? c.related) : '', c.rpage ? '생기부 ' + esc(c.rpage) + '쪽' : ''].filter(Boolean).join(' · ')}</div>` : ''}<div class="a">${body(c.content) || '<span class="none">답변 없음</span>'}</div>${sp.n ? `<div class="t">말하면 약 ${sp.t} · ${sp.n}자</div>` : ''}</section>`;
         }
         const pt = (head, rows) => rows.length ? `<table class="ant"><tr><th>${head[0]}</th><th>${head[1]}</th></tr>${rows.map(([a, b]) => `<tr><td class="k">${a}</td><td>${b}</td></tr>`).join('')}</table>` : '';
         const tr = tailsOf(c).filter(x => toText(x.q).trim() || toText(x.a).trim()).map(x => [body(x.q), body(x.a)]);
         const kr = conceptsOf(c).filter(x => x.term.trim() || toText(x.mean).trim()).map(x => [esc(x.term), body(x.mean)]);
         const xr = extrasOf(c).filter(x => toText(x.body).trim()).map(x => [esc(x.title || '기타'), body(x.body)]);
         const secs2 = [tr.length && `<div class="lab">꼬리 질문</div>${pt(['질문', '답변'], tr)}`, kr.length && `<div class="lab">개념 뜻</div>${pt(['개념', '뜻'], kr)}`, xr.length && `<div class="lab">기타</div>${pt(['종류', '내용'], xr)}`].filter(Boolean);
-        const an = o.an && (secs2.length || (c.keywords || '').trim());
+        const an = o.an && secs2.length;
         return `<table class="rec"><colgroup><col style="width:13mm"><col style="width:30mm"><col></colgroup>
           <tr><th>학년</th><th>${k === 's' ? '과목' : '영역'}</th><th>${k === 's' ? '세특 내용' : '활동 내용'}</th></tr>
           <tr><td class="c">${esc(c.grade)}</td><td class="c b">${esc(c.subject)}</td><td>${body(c.content)}</td></tr>
-          ${an ? `<tr class="an"><td colspan="3">${secs2.join('')}${c.keywords ? `<div class="kw">키워드 · ${esc(c.keywords)}</div>` : ''}</td></tr>` : ''}</table>`;
+          ${an ? `<tr class="an"><td colspan="3">${secs2.join('')}</td></tr>` : ''}</table>`;
       }).join('');
       return { k, html: `<h2>${name} <small>${list.length}</small></h2>${cardsHTML}` };
     }).filter(Boolean);
@@ -797,7 +833,7 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
     return [...cards.values()]
       .filter(c => c.kind === state.kind && !c.trashed)
       .filter(c => isQA(c.kind) || !state.grade || c.draft && !c.grade || String(c.grade) === state.grade)
-      .filter(c => !q || [c.subject, c.question, c.related, c.keywords, isQA(c.kind) ? '' : anText(c), toText(c.content)].join(' ').toLowerCase().includes(q))
+      .filter(c => !q || [c.subject, c.question, c.related, c.rsubj, c.rpage, isQA(c.kind) ? '' : anText(c), toText(c.content)].join(' ').toLowerCase().includes(q))
       .sort((a, b) => sortKey(a) - sortKey(b));
   }
   function sortKey(c) {
@@ -817,16 +853,17 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
   function qaHTML(c) {
     const w = c.kind === 'w', sp = speak(c);
     return `<article class="card qa" data-id="${c.id}">
-      <div class="ctitle"><span class="g">${w ? '약점' : '공통'}</span>${esc(c.question) || '(질문 없음)'}</div>
-      <div class="qhead"><span><button class="drag" type="button" aria-label="끌어서 순서 바꾸기">⠿</button> <span class="tag${w ? ' w' : ''}">${w ? '약점 질문' : '공통 질문'}</span></span><span>${fbBtn()}<button class="del" type="button">삭제</button></span></div>
-      <input class="question" id="subj-${c.id}" data-f="question" value="${esc(c.question)}" placeholder="${w ? '예: 물리학Ⅰ은 전공 관련 과목인데 왜 등급이 낮나요?' : '질문을 적어요'}" aria-label="질문">
-      ${w ? `<div class="related"><span>관련</span><input id="rel-${c.id}" data-f="related" value="${esc(c.related)}" placeholder="예: 2학년 물리학Ⅰ 3등급" aria-label="관련 과목·활동"></div>` : ''}
-      <div class="rt answer" id="content-${c.id}" data-f="content" contenteditable="true" data-ph="${w ? '인정할 부분, 그 뒤에 한 노력, 지금 달라진 점 순서로 적어 보세요' : '내 답변을 적어요. 말하듯이 써 보세요'}" aria-label="답변" role="textbox" aria-multiline="true">${clean(c.content)}</div>
+      <div class="ctitle"><span class="g">${w ? '생기부' : '공통'}</span>${esc(c.question) || '(질문 없음)'}</div>
+      <div class="qhead"><span><button class="drag" type="button" aria-label="끌어서 순서 바꾸기">⠿</button> <span class="tag${w ? ' w' : ''}">${w ? '생기부 질문' : '공통 질문'}</span></span><span>${fbBtn()}<button class="del" type="button">삭제</button></span></div>
+      <input class="question" id="subj-${c.id}" data-f="question" value="${esc(c.question)}" placeholder="${w ? '예: 집합으로 정의한 기준은 어떻게 정했나요?' : '질문을 적어요'}" aria-label="질문">
+      ${w ? `<div class="related"><span>과목</span><input id="rel-${c.id}" data-f="rsubj" value="${esc(c.rsubj ?? c.related ?? '')}" placeholder="예: 1학년 수학" aria-label="과목"><span class="sep2"></span><span>생기부 쪽수</span><input class="page" data-f="rpage" value="${esc(c.rpage)}" placeholder="예: 5" inputmode="numeric" aria-label="생기부 쪽수"><span>쪽</span></div>` : ''}
+      <div class="rt answer" id="content-${c.id}" data-f="content" contenteditable="true" data-ph="${w ? '생기부 내용을 바탕으로 답변을 적어요. 말하듯이 써 보세요' : '내 답변을 적어요. 말하듯이 써 보세요'}" aria-label="답변" role="textbox" aria-multiline="true">${clean(c.content)}</div>
       <div class="ansfoot">${sp.html}</div>
     </article>`;
   }
 
-  const rtc = (c, f, v, ph, label) => `<div class="rt" id="${f.replace(/:/g, '-')}-${c.id}" data-f="${f}" contenteditable="true" data-ph="${ph}" aria-label="${label}" role="textbox" aria-multiline="true">${clean(v)}</div>`;
+  const apanel = (c, l, title, heads, list, row, addLabel) => `<section class="ap ap-${l}"><div class="aph">${title}<span class="apn">${list.length}</span></div><div class="apc"><div class="apr head"><span></span><span>${heads[0]}</span><span>${heads[1]}</span><span></span></div>${list.map((x, i) => `<div class="apr">${row(x, i)}<button class="rdel" type="button" data-l="${l}" data-r="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></div>`).join('')}<button class="addsec" type="button" data-l="${l}">${addLabel}</button></div></section>`;
+  const rtc = (c, f, v, ph, label, cls = '') => `<div class="rt ${cls}" id="${f.replace(/:/g, '-')}-${c.id}" data-f="${f}" contenteditable="true" data-ph="${ph}" aria-label="${label}" role="textbox" aria-multiline="true">${clean(v)}</div>`;
   function cardHTML(c) {
     if (isQA(c.kind)) return qaHTML(c);
     const s = c.kind === 's';
@@ -849,25 +886,11 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
       <div class="side">${second}</div>
       <div class="body">
         <div class="rt content" id="content-${c.id}" data-f="content" contenteditable="true" data-ph="생기부 원문을 붙여 넣으세요" aria-label="원문" role="textbox" aria-multiline="true">${clean(c.content)}</div>
-        <div class="sumhead tail">꼬리 질문</div>
-        <div class="anwrap"><table class="antbl">
-          <colgroup><col style="width:44%"><col><col style="width:34px"></colgroup>
-          <thead><tr><th>꼬리 질문</th><th>답변</th><th></th></tr></thead>
-          <tbody>${tailsOf(c).map(x => `<tr><td>${rtc(c, `t:${x.id}:q`, x.q, '면접관이 이어서 물어볼 질문', '꼬리 질문')}</td><td>${rtc(c, `t:${x.id}:a`, x.a, '내 답변', '답변')}</td><td><button class="rdel" type="button" data-l="t" data-r="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></td></tr>`).join('')}</tbody></table>
-          <button class="addsec" type="button" data-l="t">+ 꼬리 질문 추가</button></div>
-        <div class="sumhead concept">개념 뜻</div>
-        <div class="anwrap"><table class="antbl">
-          <colgroup><col style="width:28%"><col><col style="width:34px"></colgroup>
-          <thead><tr><th>개념</th><th>뜻</th><th></th></tr></thead>
-          <tbody>${conceptsOf(c).map(x => `<tr><td><input class="cell" id="k-${c.id}-${esc(x.id)}" data-f="k:${esc(x.id)}:term" value="${esc(x.term)}" placeholder="개념, 용어" aria-label="개념"></td><td>${rtc(c, `k:${x.id}:mean`, x.mean, '뜻, 원리', '뜻')}</td><td><button class="rdel" type="button" data-l="k" data-r="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></td></tr>`).join('')}</tbody></table>
-          <button class="addsec" type="button" data-l="k">+ 개념 추가</button></div>
-        <div class="sumhead ex">기타</div>
-        <div class="anwrap"><table class="antbl">
-          <colgroup><col style="width:28%"><col><col style="width:34px"></colgroup>
-          <thead><tr><th>종류</th><th>내용</th><th></th></tr></thead>
-          <tbody>${extrasOf(c).map(x => `<tr><td><input class="cell" id="xt-${c.id}-${esc(x.id)}" data-f="x:${esc(x.id)}:title" value="${esc(x.title)}" placeholder="예: 느낀 점" aria-label="종류 이름"></td><td>${rtc(c, `x:${x.id}:body`, x.body, '자유롭게 적어요', x.title || '기타')}</td><td><button class="rdel" type="button" data-l="x" data-r="${esc(x.id)}" aria-label="이 줄 지우기" title="이 줄 지우기">×</button></td></tr>`).join('')}</tbody></table>
-          <button class="addsec" type="button" data-l="x">+ 기타 추가</button></div>
-        <div class="kwrow"><span>키워드</span><input class="kw" id="kw-${c.id}" data-f="keywords" value="${esc(c.keywords)}" placeholder="예: 트랜지스터, 오차 분석, 전공 연계" aria-label="키워드"></div>
+        <div class="anbox">
+          ${apanel(c, 't', '꼬리 질문', ['질문', '답변'], tailsOf(c), (x, i) => `<span class="no">Q${i + 1}</span>${rtc(c, `t:${x.id}:q`, x.q, '면접관이 이어서 물어볼 질문', '꼬리 질문', 'c1')}${rtc(c, `t:${x.id}:a`, x.a, '내 답변', '답변', 'c2')}`, '+ 꼬리 질문 추가')}
+          ${apanel(c, 'k', '개념 뜻', ['개념', '뜻'], conceptsOf(c), (x, i) => `<span class="no">${i + 1}</span><input class="cell c1" id="k-${c.id}-${esc(x.id)}" data-f="k:${esc(x.id)}:term" value="${esc(x.term)}" placeholder="개념, 용어" aria-label="개념">${rtc(c, `k:${x.id}:mean`, x.mean, '뜻, 원리', '뜻', 'c2')}`, '+ 개념 추가')}
+          ${apanel(c, 'x', '기타', ['종류', '내용'], extrasOf(c), (x, i) => `<span class="no">${i + 1}</span><input class="cell c1" id="xt-${c.id}-${esc(x.id)}" data-f="x:${esc(x.id)}:title" value="${esc(x.title)}" placeholder="예: 느낀 점" aria-label="종류 이름">${rtc(c, `x:${x.id}:body`, x.body, '자유롭게 적어요', x.title || '기타', 'c2')}`, '+ 기타 추가')}
+        </div>
       </div>
     </article>`;
   }
@@ -877,7 +900,7 @@ ${auto ? `${S}window.addEventListener('load',()=>setTimeout(()=>print(),400));${
     document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', state.view !== 'trash' && x.dataset.kind === state.kind));
     if (state.view === 'trash') { renderTrash(); counts(); renderDday(); return; }
     const v = visible();
-    const addLabel = { s: '+ 과목 카드 추가', c: '+ 활동 카드 추가', w: '+ 약점 질문 추가', q: '+ 질문 추가' }[state.kind];
+    const addLabel = { s: '+ 과목 카드 추가', c: '+ 활동 카드 추가', w: '+ 생기부 질문 추가', q: '+ 질문 추가' }[state.kind];
     $('#chips').hidden = isQA(state.kind);
     listEl.innerHTML = (v.length ? v.map(cardHTML).join('') : `<p class="empty">${state.q ? '검색 결과가 없어요.' : '아직 카드가 없어요.'}</p>`)
       + `<button class="add" type="button" id="add">${addLabel}</button>`;
